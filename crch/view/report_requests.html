@@ -1,0 +1,147 @@
+<div class="form-group row">
+   <span class="label label-primary center-block" style="margin: 1%;font-size: 100%;">
+       Informe de Solicitudes
+   </span>
+</div>
+
+<div class="form-group row">
+    <label class="col-md-2 padding-label" >
+        Ejecutivo
+    </label>
+    <div class="col-md-4">
+        <input type='text' class="form-control" required ng-model="auxData.filter.executive"/>
+    </div>
+
+    <label class="col-md-2 padding-label">
+        Estado de la Solicitud
+    </label>
+    <div class="col-md-4">
+        <input type='text' class="form-control" required ng-model="auxData.filter.requestStatus"/>
+    </div>
+
+</div>
+
+<div class="form-group row">
+    <label class="col-md-2 padding-label">Fecha Inicial</label>
+    <div class="col-md-4 ">
+        <div class='input-group date'>
+            <input type='text' class="form-control" ng-model="auxData.filter.startDate" required datetime-picker date-format="dd/MM/yyyy" date-only />
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+        </div>
+    </div>
+
+    <label class="col-md-2 padding-label">Fecha Final</label>
+    <div class="col-md-4 ">
+        <div class='input-group date'>
+            <input type='text' class="form-control" ng-model="auxData.filter.endDate" required datetime-picker date-format="dd/MM/yyyy" date-only />
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+        </div>
+    </div>
+</div>
+
+<div class="form-group row">
+    <label class="col-md-2 padding-label" >
+        N&uacute;mero de Identificaci&oacute;n
+    </label>
+    <div class="col-md-4">
+        <input type='text' class="form-control" required ng-model="auxData.filter.idNumber"/>
+    </div>
+</div>
+
+<div class="form-group row center-block" style="width: 40%; margin-left: 60%">
+    <button class="btn btn-primary col-md-5 col-xs-12 " type="button" style="margin-bottom: 5px;" ng-click="genReport(4)">Generar Archivo</button>
+    <button class="btn btn-primary col-md-offset-2 col-md-5 col-xs-12 " type="button" style="margin-bottom: 5px;" ng-click="cleanAux()">Limpiar</button>
+</div>
+
+<div ng-if="auxData.result.length > 0"  class="form-group row center-block table-responsive">
+    <table class="table table-bordered">
+        <tr class="active">
+            <th colspan="12">
+                INFORME DE SOLICITUDES
+            </th>
+        </tr>
+
+        <tr class="active">
+            <th>
+                No. Solicitud
+            </th>
+            <th>
+                C&oacute;digo de Usuario
+            </th>
+            <th>
+                Nombre
+            </th>
+            <th>
+                Fecha de Solicitud
+            </th>
+            <th>
+                Fecha de Atenci&oacute;n
+            </th>
+            <th>
+                No. Convenio
+            </th>
+            <th>
+                Nombre Convenio
+            </th>
+            <th>
+                No. Identificaci&oacute;n
+            </th>
+            <th>
+                Estado Solicitud
+            </th>
+            <th>
+                Estado del convenio
+            </th>
+            <th>
+                Usuario que Autorizo
+            </th>
+            <th>
+                Filtros
+            </th>
+        </tr>
+
+        <tr ng-repeat="data in auxData.result">
+           <td>
+               {{data.requestId}}
+           </td>
+            <td>
+                {{data.userCode}}
+            </td>
+            <td>
+                {{data.userName}}
+            </td>
+            <td>
+                {{data.requestDate}}
+            </td>
+            <td>
+                {{data.responseDate}}
+            </td>
+            <td>
+                {{data.agreementCode}}
+            </td>
+            <td>
+                {{data.agreementName}}
+            </td>
+            <td>
+                {{data.idNumber}}
+            </td>
+            <td>
+                {{data.requestStatus}}
+            </td>
+            <td>
+                {{data.agreementStatus}}
+            </td>
+
+            <td>
+                {{data.authorizingUser}}
+            </td>
+            <td>
+                {{data.filters}}
+            </td>
+        </tr>
+    </table>
+</div>

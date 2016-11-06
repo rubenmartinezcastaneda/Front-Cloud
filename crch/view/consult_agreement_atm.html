@@ -1,0 +1,75 @@
+<form>
+    <div class="form-group row">
+        <span class="label label-primary center-block" style="margin: 1%;font-size: 100%;">Referencia &uacute;nica</span>
+    </div>
+    <div class="form-group row">
+        <label class="col-md-2 padding-label">Acci&oacute;n</label>
+        <div class="col-md-3" style="padding-top: 5px;">
+            <select class="form-control" ng-model="chATM.action"  >
+                <option value="I" ng-if="chATM.action == 'I'">Creaci&oacute;n Convenios Nuevo ATM</option>
+                <option value="U" ng-if="chATM.action == 'U'">Modificaci&oacute;n</option>
+                <option value="D" ng-if="chATM.action == 'D'">Cancelaci&oacute;n</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-md-2 padding-label">
+            Categor&iacute;a
+        </label>
+        <div class="col-md-3" style="padding-top: 5px;">
+            <select class="form-control" ng-model="chATM.category"  >
+                <option value="001" ng-if="chATM.category == '001'">Servicios P&uacute;blicos</option>
+                <option value="002" ng-if="chATM.category == '002'">Telefon&iacute;a Celular</option>
+                <option value="003" ng-if="chATM.category == '003'">TV Satelital y Cable</option>
+                <option value="004" ng-if="chATM.category == '004'">Comercializaci&oacute;n de productos</option>
+                <option value="005" ng-if="chATM.category == '005'">Seguros</option>
+                <option value="006" ng-if="chATM.category == '006'">Comercializaci&oacute;n de Servicios</option>
+                <option value="007" ng-if="chATM.category == '007'">Pensiones, Cesant&iacute;as y ARP</option>
+                <option value="008" ng-if="chATM.category == '008'">Fiduciarias</option>
+                <option value="009" ng-if="chATM.category == '009'">Fondos de Empleados</option>
+                <option value="010" ng-if="chATM.category == '010'">Impuestos</option>
+                <option value="011" ng-if="chATM.category == '011'">Otros Pagos</option>
+                <option value="012" ng-if="chATM.category == '012'">Salud</option>
+                <option value="013" ng-if="chATM.category == '013'">Educaci&oacute;n</option>
+            </select>
+        </div>
+
+        <label class="col-md-2 col-md-offset-1 padding-label">
+            Subcategor&iacute;a
+        </label>
+
+        <div class="col-md-3" style="padding-top: 5px;">
+            <select class="form-control" ng-model="chATM.subcategory"  >
+                <option value="001" ng-if="chATM.subcategory == '001'">Bogot&aacute;</option>
+                <option value="002" ng-if="chATM.subcategory == '002'">Medell&iacute;n</option>
+                <option value="003" ng-if="chATM.subcategory == '003'">Cali</option>
+                <option value="004" ng-if="chATM.subcategory == '004'">Barranquilla</option>
+                <option value="006" ng-if="chATM.subcategory == '006'">Costa Atl&aacute;ntica</option>
+                <option value="007" ng-if="chATM.subcategory == '007'">Pereira</option>
+                <option value="008" ng-if="chATM.subcategory == '008'">Neiva</option>
+                <option value="009" ng-if="chATM.subcategory == '009'">Manizales</option>
+                <option value="010" ng-if="chATM.subcategory == '010'">Bucaramanga</option>
+                <option value="011" ng-if="chATM.subcategory == '011'">C&uacute;cuta</option>
+                <option value="012" ng-if="chATM.subcategory == '012'">Cartagena</option>
+                <option value="013" ng-if="chATM.subcategory == '013'">Facatativ&aacute;</option>
+                <option value="015" ng-if="chATM.subcategory == '015'">Villavicencio</option>
+                <option value="023" ng-if="chATM.subcategory == '023'">Pasto</option>
+                <option value="099" ng-if="chATM.subcategory == '099'">Todo el pa&iacute;s</option>
+            </select>
+        </div>
+
+    </div>
+
+    <div class="form-group row">
+        <span class="label label-primary center-block" style="margin: 1%;font-size: 100%;">Anexos o Im&aacute;genes</span>
+    </div>
+
+    </div>
+        <div class="panel panel-default col-xs-offset-1 col-xs-10" style="padding: 0px; margin-bottom: 1%;" ng-if="chATM.attachments.length > 0">
+            <div class="panel-heading" >Adjuntos:</div>
+            <ul class="list-group ">
+                <li class="list-group-item" ng-repeat="data in chATM.attachments">{{data.file_res.name}}</li>
+            </ul>
+        </div>
+</form>

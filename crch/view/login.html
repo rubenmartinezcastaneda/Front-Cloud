@@ -1,0 +1,29 @@
+<div ng-include="'view/main_header.html'" style="padding-bottom: 1%;" />
+  <div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-offset-4 col-md-4">
+          <div class="panel panel-default">
+            <div class="panel-body" ng-controller="LoginCtrl">
+              <form class="form-signin" ng-submit="initSession(credentials)" >
+                <h4>Acceso Usuarios</h4>
+                <h6>* Todos los campos son obligatorios</h6>
+                <br>
+                <label for="inputUser">Usuario:</label>
+                <input type="text" id="inputUser" class="form-control" required="" autofocus="" ng-model="credentials.username">
+                <br>
+                <label for="inputPassword" >Contrase&ntilde;a:</label>
+                <input type="password" id="inputPassword" class="form-control" required="" ng-model="credentials.password">
+                <h6 class="note">
+                  <strong>NOTA: </strong>Es indistinto utilizar may&uacute;sculas o min&uacute;sculas en el usuario y
+                  contrase&ntilde;a
+                </h6>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,95 @@
+<form ng-submit="saveConfDispersionAccounts(confDispersionAccounts)" ng-controller="RequestAgreementCtrl">
+    <div class="form-group row" >
+        <div class="panel panel-default col-xs-offset-1 col-xs-10" style="padding: 0px;" ng-repeat="data in confDispersionAccounts.dispersionAccounts">
+            <div class="panel-heading">Cuenta de Dispersi&oacute;n {{$index + 1}}</div>
+            <div class="panel-body">
+                <div class="form-group row">
+                    <label class="col-md-2 padding-label">Tipo de Recaudo</label>
+                    <div class="col-md-2">
+                        <input type="text" class="form-control" required ng-model="data.collectType">
+                    </div>
+                    <label class="col-md-2 padding-label">Clase</label>
+                    <div class="col-md-2">
+                        <select class="form-control" ng-model="data.taxClass" required >
+                            <option value=""></option>
+                            <option value="002">Departamentales</option>
+                            <option value="003" >Municipales</option>
+                        </select>
+                    </div>
+                    <label class="col-md-2 padding-label">Tipo</label>
+                    <div class="col-md-2">
+                        <select class="form-control" ng-model="data.taxType" required >
+                            <option value=""></option>
+                            <option value="D">Departamento</option>
+                            <option value="M" >Municipio</option>
+                            <option value="C">Convenio Asociado</option>
+                            <option value="R" >Devoluci&oacute;n Dispersi&oacute;n</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-md-3 padding-label">N&uacute;mero de Identificaci&oacute;n</label>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control" maxlength="15" required ng-model="data.numId">
+                    </div>
+                    <label class="col-md-offset-1 col-md-3 padding-label">Tipo de Identificaci&oacute;n</label>
+                    <div class="col-md-2">
+                        <select class="form-control" ng-model="data.idType" required >
+                            <option value=""></option>
+                            <option value="3">NIT</option>
+                            <option value="1">C&eacute;dula</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+
+                    <label class="col-md-2 padding-label">C&oacute;digo Banco</label>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control" required ng-model="data.bankCode">
+                    </div>
+                    <label class="col-md-offset-1 col-md-2 padding-label">Cuenta</label>
+                    <div class="col-md-4">
+                        <input type="text" class="form-control" required ng-model="data.account">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-md-2 padding-label">Tipo de Cuenta</label>
+                    <div class="col-md-2">
+                        <select class="form-control" ng-model="data.accountType" required >
+                            <option value=""></option>
+                            <option value="01">Corriente</option>
+                            <option value="02">Ahorros</option>
+                        </select>
+                    </div>
+                    <label class="col-md-2 padding-label">Nombre del Contacto</label>
+                    <div class="col-md-2">
+                        <input type="text" class="form-control" required ng-model="data.contactName">
+                    </div>
+                    <label class="col-md-2 padding-label">Tel&eacute;fono del contacto</label>
+                    <div class="col-md-2">
+                        <input type="text" class="form-control" required ng-model="data.contactTelephone">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-md-2 padding-label">Devoluci&oacute;n de la Dispersi&oacute;n</label>
+                    <div class="col-md-2">
+                        <input type="text" class="form-control" required ng-model="data.dispersionDevolution">
+                    </div>
+                </div>
+
+                <div class="form-group center-block row" style="width: 45%" >
+                    <button class="btn btn-primary col-md-5 col-xs-12" type="button" ng-click="addDispersionAccount()" style="margin-bottom: 5px;">A&ntilde;adir Otra Cuenta</button>
+                    <button class="btn btn-primary col-md-offset-2 col-md-5 col-xs-12" type="button" ng-click="removeDispersionAccount($index)">Borrar Cuenta</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="center-block row" style="width: 20%" >
+        <button class="btn btn-primary col-xs-12" type="submit">Guardar</button>
+    </div>
+</form>

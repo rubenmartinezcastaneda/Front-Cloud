@@ -1,0 +1,105 @@
+<div ng-include="'view/main_header.html'" style="padding-bottom: 1%;"></div> <div ng-controller="ApplicationController" >
+    <div class="row affix-row" >
+        <div class="col-sm-3 col-md-2 affix-sidebar" id="menu">
+            <div ng-include="'view/menu.html'"></div>
+        </div>
+        <div class="col-sm-9 col-md-9 affix-content">
+            <ol class="breadcrumb">
+                <li>Administrador de Solicitudes</li>
+                <li class="active">Consulta de solicitudes</li>
+            </ol>
+
+            <div ng-include="'view/menu_top_request.html'"></div>
+
+            <div class="row">
+                <div class="col-md-8">
+                    <h3 style="margin-left: 2%;margin-bottom: 3%; margin-top: 0;">Consulta de solicitud</h3>
+                </div>
+            </div>
+
+            <div class="container-fluid " ng-controller="RequestAgreementCtrl">
+                <form>
+                    <div class="form-group row">
+                        <label class="col-md-2 padding-label">N&uacute;mero de Identifica.</label>
+                        <div class="col-md-3">
+                            <input type="text" class="form-control" ng-model="formConsult.idNum">
+                        </div>
+                        <label class="col-md-offset-1 col-md-2 padding-label">Tipo de Recaudo</label>
+                        <div class="col-md-4">
+                            <select class="form-control" ng-model="formConsult.collectType" required >
+                                <option value=""></option>
+                                <option value="01" ng-if="type == 'R'">Recaudo Nacional</option>
+                                <option value="02" ng-if="type == 'R'">Servicios P&uacute;blicos</option>
+                                <option value="05">Recaudo de Impuestos</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-md-2 padding-label">C&oacute;digo del Convenio</label>
+                        <div class="col-md-3">
+                            <input type="text" class="form-control" ng-model="formConsult.agreementCode">
+                        </div>
+                        <label class="col-md-offset-1 col-md-2 padding-label">N&uacute;mero de Solicitud</label>
+                        <div class="col-md-4">
+                            <input type="text" class="form-control" ng-model="formConsult.requestNumber">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-md-2 padding-label">Descripci&oacute;n de Convenio</label>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" ng-model="formConsult.description">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <button class="btn btn-primary col-md-offset-7 col-md-2 col-xs-12" type="button" ng-click="cleanFormConsult()" style="margin-bottom: 5px;margin-right: 5%;">Limpiar</button>
+                        <button class="btn btn-primary col-md-2 col-xs-12" type="button" ng-click="consultAgreement('C')" style="margin-bottom: 5px;">Consultar <span class="glyphicon glyphicon-search"></span></button>
+                    </div>
+                </form>
+
+                <div class="row center-block" style="width: 95%;" ng-if="resultAgreement.length > 0">
+                    <h4>RESULTADO DE BUSQUEDA: </h4>
+                    <table class="table table-bordered table-hover">
+                        <tr class="active">
+                            <th>
+                                No. Solicitud
+                            </th>
+                            <th>
+                                No. Convenio
+                            </th>
+                            <th>
+                                No. Identificaci&oacute;n
+                            </th>
+                            <th>
+                                Tipo de Recaudo
+                            </th>
+                            <th>
+                                Descripci&oacute;n
+                            </th>
+                        </tr>
+                        <tr ng-repeat="data in resultAgreement" ng-click="goToResume(data)">
+                            <td>
+                                {{data.requestNumber}}
+                            </td>
+                            <td>
+                                {{data.agreementCode}}
+                            </td>
+                            <td>
+                                {{data.idNumber}}
+                            </td>
+                            <td>
+                                {{data.agreementType}}
+                            </td>
+                            <td>
+                                {{data.description}}
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

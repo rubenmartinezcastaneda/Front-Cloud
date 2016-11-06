@@ -1,0 +1,151 @@
+<form>
+    <div class="form-group row">
+        <label class="col-md-2 padding-label">Acci&oacute;n</label>
+        <div class="col-md-3" style="padding-top: 5px;">
+            <select class="form-control" ng-model="chBancaMovil.action"  >
+                <option value="I" ng-if="chBancaMovil.action == 'I'">Creaci&oacute;n Convenios Nuevo BBVA Net</option>
+                <option value="U" ng-if="chBancaMovil.action == 'U'">Modificaci&oacute;n</option>
+                <option value="D" ng-if="chBancaMovil.action == 'D'">Cancelaci&oacute;n</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-md-2 padding-label">
+            Categor&iacute;a
+        </label>
+        <div class="col-md-3" style="padding-top: 5px;">
+            <select class="form-control" ng-model="chBancaMovil.category"  >
+                <option value="001" ng-if="chBancaMovil.category == '001'">Servicios P&uacute;blicos</option>
+                <option value="002" ng-if="chBancaMovil.category == '002'">Telefon&iacute;a Celular</option>
+                <option value="003" ng-if="chBancaMovil.category == '003'">TV Satelital y Cable</option>
+                <option value="004" ng-if="chBancaMovil.category == '004'">Comercializaci&oacute;n de productos</option>
+                <option value="005" ng-if="chBancaMovil.category == '005'">Seguros</option>
+                <option value="006" ng-if="chBancaMovil.category == '006'">Comercializaci&oacute;n de Servicios</option>
+                <option value="007" ng-if="chBancaMovil.category == '007'">Pensiones, Cesant&iacute;as y ARP</option>
+                <option value="008" ng-if="chBancaMovil.category == '008'">Fiduciarias</option>
+                <option value="009" ng-if="chBancaMovil.category == '009'">Fondos de Empleados</option>
+                <option value="010" ng-if="chBancaMovil.category == '010'">Impuestos</option>
+                <option value="011" ng-if="chBancaMovil.category == '011'">Otros Pagos</option>
+                <option value="012" ng-if="chBancaMovil.category == '012'">Salud</option>
+                <option value="013" ng-if="chBancaMovil.category == '013'">Educaci&oacute;n</option>
+            </select>
+        </div>
+
+        <label class="col-md-2 col-md-offset-1 padding-label">
+            Subcategor&iacute;a
+        </label>
+
+        <div class="col-md-3" style="padding-top: 5px;">
+            <select class="form-control" ng-model="chBancaMovil.subcategory"  >
+                <option value="001" ng-if="chBancaMovil.subcategory == '001'">Bogot&aacute;</option>
+                <option value="002" ng-if="chBancaMovil.subcategory == '002'">Medell&iacute;n</option>
+                <option value="003" ng-if="chBancaMovil.subcategory == '003'">Cali</option>
+                <option value="004" ng-if="chBancaMovil.subcategory == '004'">Barranquilla</option>
+                <option value="006" ng-if="chBancaMovil.subcategory == '006'">Costa Atl&aacute;ntica</option>
+                <option value="007" ng-if="chBancaMovil.subcategory == '007'">Pereira</option>
+                <option value="008" ng-if="chBancaMovil.subcategory == '008'">Neiva</option>
+                <option value="009" ng-if="chBancaMovil.subcategory == '009'">Manizales</option>
+                <option value="010" ng-if="chBancaMovil.subcategory == '010'">Bucaramanga</option>
+                <option value="011" ng-if="chBancaMovil.subcategory == '011'">C&uacute;cuta</option>
+                <option value="012" ng-if="chBancaMovil.subcategory == '012'">Cartagena</option>
+                <option value="013" ng-if="chBancaMovil.subcategory == '013'">Facatativ&aacute;</option>
+                <option value="015" ng-if="chBancaMovil.subcategory == '015'">Villavicencio</option>
+                <option value="023" ng-if="chBancaMovil.subcategory == '023'">Pasto</option>
+                <option value="099" ng-if="chBancaMovil.subcategory == '099'">Todo el pa&iacute;s</option>
+            </select>
+        </div>
+
+    </div>
+
+    <div class="form-group row">
+        <label class="col-md-2 padding-label">
+            Formato
+        </label>
+        <div class="col-md-3" style="padding-top: 5px;">
+            <select class="form-control" ng-model="chBancaMovil.format"  >
+                <option value=""></option>
+                <option value="01" ng-if="chBancaMovil.forma == '01'">
+                    Validaci&oacute;n B.D. y existe un formato con
+                    validaci&oacute;n B.D. Con valor sugerido
+                </option>
+                <option value="02" ng-if="chBancaMovil.forma == '02'">
+                    Validaci&oacute;n D&iacute;gito de Chequeo
+                </option>
+                <option value="03" ng-if="chBancaMovil.forma == '03'">
+                    Con confirmaci&oacute;n de referencia y valor
+                </option>
+                <option value="04" ng-if="chBancaMovil.forma == '04'">
+                    Con confirmaci&oacute;n de dos referencias y valor
+                </option>
+                <option value="05" ng-if="chBancaMovil.forma == '05'">
+                    Pago con validaci&oacute;n B.D. y con un dato adicional
+                </option>
+                <option value="06" ng-if="chBancaMovil.forma == '06'">
+                    Validaci&oacute;n de n&uacute;mero de B.D. pero no valor
+                </option>
+            </select>
+        </div>
+
+        <label class="col-md-2 col-md-offset-1 padding-label">
+            Formato Imagen
+        </label>
+
+        <div class="col-md-3" style="padding-top: 5px;">
+            <input type='text' class="form-control" readonly ng-model="chBancaMovil.imageFormat"/>
+        </div>
+
+    </div>
+    <div class="form-group row">
+        <span class="label label-primary center-block" style="margin: 1%;font-size: 100%;">Referencia &uacute;nica</span>
+    </div>
+    <div class="form-group row" >
+        <label class="col-md-2 padding-label">
+            Descripci&oacute;n Referencia
+        </label>
+        <div class="col-md-3" style="padding-top: 5px;">
+            <input type='text' class="form-control" readonly ng-model="chBancaMovil.reference.description"/>
+        </div>
+        <label class="col-md-3 col-md-offset-1 padding-label">
+            Alineaci&oacute;n
+        </label>
+        <div class="col-md-3">
+            <select class="form-control" ng-model="chBancaMovil.reference.align"  >
+                <option value="RIGHT" ng-if="chBancaMovil.reference.align == 'RIGHT'">A la derecha</option>
+                <option value="LEFT" ng-if="chBancaMovil.reference.align == 'LEFT'">A la izquierda</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group row" >
+        <label class="col-md-2 padding-label">
+            Car&aacute;cter de Relleno
+        </label>
+        <div class="col-md-3" style="padding-top: 5px;">
+            <select class="form-control" ng-model="chBancaMovil.reference.fillerChar"  >
+                <option value="ZEROS" ng-if="chBancaMovil.reference.fillerChar == 'ZEROS'">Ceros</option>
+                <option value="SPACES" ng-if="chBancaMovil.reference.fillerChar == 'SPACES'">Espacios</option>
+            </select>
+        </div>
+        <label class="col-md-3 col-md-offset-1 padding-label">
+            Tipo de dato
+        </label>
+        <div class="col-md-3">
+            <select class="form-control" ng-model="chBancaMovil.reference.type"  >
+                <option value="NUM" ng-if="chBancaMovil.reference.type == 'NUM'">Num&eacute;rico</option>
+                <option value="ALFNUM" ng-if="chBancaMovil.reference.type == 'ALFNUM'">Alfanum&eacute;rico</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <span class="label label-primary center-block" style="margin: 1%;font-size: 100%;">Anexos o Im&aacute;genes</span>
+    </div>
+
+        <div class="panel panel-default col-xs-offset-1 col-xs-10" style="padding: 0px; margin-bottom: 1%;" ng-if="chBancaMovil.attachments.length > 0">
+            <div class="panel-heading" >Adjuntos:</div>
+            <ul class="list-group ">
+                <li class="list-group-item" ng-repeat="data in chBancaMovil.attachments">{{data.file_res.name}} </li>
+            </ul>
+        </div>
+</form>

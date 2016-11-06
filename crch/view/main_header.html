@@ -1,0 +1,29 @@
+<div class="page-header header row" ng-controller="ApplicationController">
+    <img src="img/logo.png" class="img-responsive image col-xs-1" />
+    <h1 class="title col-md-6">
+        M&Oacute;DULO DE CONTRATACI&Oacute;N DE CONVENIOS DE RECAUDO E IMPUESTOS
+    </h1>
+
+    <div class="col-md-2 user-info" ng-if="isAuthenticate">
+        <p class="row"></p>
+        <p>
+            Bienvenido
+        </p>
+
+        <p class="title_name">
+            {{userLog.name}} {{userLog.firstname}}
+        </p>
+
+        <p class="title_min">
+            &Uacute;ltimo Acceso: {{userLog.lastAccess}}
+        </p>
+
+        <p class="title_min">
+            Perfil: {{userLog.profile}}
+        </p>
+    </div>
+
+    <div class="col-md-1" style="padding-top: 4%;" ng-if="!isLogin">
+        <button class="btn" ng-click="endSession()" style="margin-right: 5%; margin-bottom: 1%;">Desconectar</button>
+    </div>
+</div>

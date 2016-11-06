@@ -1,0 +1,86 @@
+<form ng-submit="saveCaptureType(captype)" ng-controller="RequestAgreementCtrl">
+    <div class="form-group row">
+        <label class="col-md-2 padding-label">Tipo</label>
+        <div class="col-md-2" style="padding-top: 5px;">
+            <select class="form-control" ng-model="captype.type" required >
+                <option value=""></option>
+                <option value="MAN">Manual</option>
+                <option value="CBA">C&oacute;digo de Barras</option>
+                <option value="MCB">Manual y C&oacute;digo de Barras</option>
+                <option value="TJR" ng-if="type == 'R'">Tarjeta de Recaudo</option>
+            </select>
+        </div>
+
+        <label class="col-md-2 padding-label">Valida Valor</label>
+        <div class="col-md-2" style="padding-top: 5px;">
+            <label class="radio-inline">
+                <input type="radio" ng-model="captype.validValue" ng-value=true>
+                Si
+            </label>
+            <label class="radio-inline">
+                <input type="radio" ng-model="captype.validValue" ng-value=false>
+                No
+            </label>
+        </div>
+
+        <label class="col-md-2 padding-label">Valida Fecha</label>
+        <div class="col-md-2" style="padding-top: 5px;">
+            <label class="radio-inline">
+                <input type="radio" ng-model="captype.validDate" ng-value=true>
+                Si
+            </label>
+            <label class="radio-inline">
+                <input type="radio" ng-model="captype.validDate" ng-value=false>
+                No
+            </label>
+        </div>
+    </div>
+
+    <div class="form-group row" ng-if="captype.type == 'CBA' || captype.type == 'MCB' || captype.type == 'TJR'" >
+        <label class="col-md-2 padding-label">C&oacute;digo EAN (415)</label>
+        <div class="col-md-3" style="padding-top: 5px;">
+            <input type='text' class="form-control" required ng-model="captype.eanCode"/>
+        </div>
+    </div>
+
+    <div class="form-group row" ng-if="captype.type == 'TJR'" >
+
+        <div class="panel panel-default col-xs-offset-3 col-xs-6" style="padding: 0px;">
+            <div class="panel-heading">Tarjeta de Recaudo</div>
+            <div class="panel-body">
+                <div class="form-group row">
+                    <label class="col-xs-6 padding-label">Expedici&oacute;n</label>
+                    <div class="col-xs-6">
+                        <input type="text" class="form-control" required ng-model="captype.expedition">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-xs-6 padding-label">Reexpedici&oacute;n</label>
+                    <div class="col-xs-6">
+                        <input type="text" class="form-control" required ng-model="captype.reexpedition">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-xs-2 padding-label">Archivo</label>
+                    <div class="col-xs-10">
+                        <input type="file" class="form-control" name="file" id="file" required >
+                    </div>
+                </div>
+
+                <div class="form-group center-block row" style="width: 50%" >
+                    <button class="btn btn-primary col-xs-12" type="button" ng-click="addCollectFile()" style="margin-bottom: 5px;">A&ntilde;adir</button>
+                </div>
+            </div>
+            <div class="panel-heading" ng-if="captype.collectFiles.length > 0">Adjuntos:</div>
+            <ul class="list-group ">
+                <li class="list-group-item" ng-repeat="data in captype.collectFiles">{{data.file_res.name}} <a ng-click="removeCollectFile($index)">eliminar</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="center-block row" style="width: 20%" >
+        <button class="btn btn-primary col-xs-12" type="submit">Guardar</button>
+    </div>
+</form>

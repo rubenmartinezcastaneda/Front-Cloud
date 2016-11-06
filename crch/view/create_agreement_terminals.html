@@ -1,0 +1,76 @@
+<form ng-submit="saveChTerminals(chTerminals)" ng-controller="RequestAgreementCtrl">
+    <div class="form-group row">
+        <label class="col-md-2 padding-label">Cobertura del Servicio</label>
+        <div class="col-md-3" style="padding-top: 5px;">
+            <select class="form-control" ng-model="chTerminals.type" required >
+                <option value=""></option>
+                <option value="NAL">Nacional</option>
+                <option value="OFI">Oficina</option>
+                <option value="CSR">Centro de Servicios</option>
+                <option value="OCS">Oficina y Centro de servicios</option>
+            </select>
+        </div>
+
+        <label class="col-md-2 padding-label">
+            <input type="checkbox" ng-model="chTerminals.allOffices"> Todas las Oficinas
+        </label>
+    </div>
+
+    <div ng-repeat="data in chTerminals.terminals" ng-if="!chTerminals.allOffices">
+        <div class="form-group row" >
+            <label class="col-md-2 padding-label">C&oacute;digo Centro de Servicios</label>
+            <div class="col-md-3" style="padding-top: 5px;">
+                <input type='text' class="form-control" required ng-model="data.serviceCenterCode"/>
+            </div>
+            <label class="col-md-3 col-md-offset-1 padding-label">
+                C&oacute;digo Oficina
+            </label>
+            <div class="col-md-3">
+                <input type='text' class="form-control" required ng-model="data.officeCode"/>
+            </div>
+        </div>
+
+        <div class="form-group center-block row" style="width: 45%" >
+            <button class="btn btn-primary col-md-5 col-xs-12" type="button" ng-click="addChTerminal()" style="margin-bottom: 5px;">A&ntilde;adir</button>
+            <button class="btn btn-primary col-md-offset-2 col-md-5 col-xs-12" type="button" ng-click="removeChTerminal($index)">Borrar</button>
+        </div>
+
+    </div>
+
+    <div class="form-group row">
+        <span class="label label-primary center-block" style="margin: 1%;font-size: 100%;">Anexos o Im&aacute;genes</span>
+    </div>
+
+    <div class="form-group row" >
+        <label class="col-md-2 padding-label">Anexo</label>
+        <div class="col-md-3" style="padding-top: 5px;">
+            <select class="form-control" ng-model="chTerminals.attachmentType" required >
+                <option value=""></option>
+                <option value="FO">Factura original</option>
+                <option value="EBD">Ejemplo Base de Datos</option>
+                <option value="CCB">Cronograma Cargue Base de Datos</option>
+                <option value="OCS">Imagen de Pantalla</option>
+            </select>
+        </div>
+        <button class="btn btn-primary col-md-offset-2 col-md-3" type="button" ng-click="addTerminalAttachmentFile()" style="margin-top: 5px;margin-bottom: 1%;margin-left: 3%;">Cargue Anexo</button>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-xs-2 padding-label">Adjunto</label>
+        <div class="col-xs-10">
+            <input type="file" class="form-control" name="fileTerminal" id="fileTerminal" required >
+        </div>
+    </div>
+
+
+    </div>
+        <div class="panel panel-default col-xs-offset-1 col-xs-10" style="padding: 0px; margin-bottom: 1%;" ng-if="chTerminals.terminalAttachments.length > 0">
+            <div class="panel-heading" >Adjuntos:</div>
+            <ul class="list-group ">
+                <li class="list-group-item" ng-repeat="data in chTerminals.terminalAttachments">{{data.file_res.name}} <a ng-click="removeTerminalAttachmentFile($index)">eliminar</a></li>
+            </ul>
+        </div>
+    <div class="center-block row" style="width: 20%" >
+        <button class="btn btn-primary col-xs-12" type="submit">Guardar</button>
+    </div>
+</form>

@@ -1,0 +1,103 @@
+<form ng-submit="saveChATM(chATM)" ng-controller="RequestAgreementCtrl">
+    <div class="form-group row">
+        <span class="label label-primary center-block" style="margin: 1%;font-size: 100%;">Referencia &uacute;nica</span>
+    </div>
+    <div class="form-group row">
+        <label class="col-md-2 padding-label">Acci&oacute;n</label>
+        <div class="col-md-3" style="padding-top: 5px;">
+            <select class="form-control" ng-model="chATM.action" required >
+                <option value=""></option>
+                <option value="I">Creaci&oacute;n Convenios Nuevo ATM</option>
+                <option value="U">Modificaci&oacute;n</option>
+                <option value="D">Cancelaci&oacute;n</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-md-2 padding-label">
+            Categor&iacute;a
+        </label>
+        <div class="col-md-3" style="padding-top: 5px;">
+            <select class="form-control" ng-model="chATM.category" required >
+                <option value=""></option>
+                <option value="001" ng-if="type == 'R'">Servicios P&uacute;blicos</option>
+                <option value="002" ng-if="type == 'R'">Telefon&iacute;a Celular</option>
+                <option value="003" ng-if="type == 'R'">TV Satelital y Cable</option>
+                <option value="004" ng-if="type == 'R'">Comercializaci&oacute;n de productos</option>
+                <option value="005" ng-if="type == 'R'">Seguros</option>
+                <option value="006" ng-if="type == 'R'">Comercializaci&oacute;n de Servicios</option>
+                <option value="007" ng-if="type == 'R'">Pensiones, Cesant&iacute;as y ARP</option>
+                <option value="008" ng-if="type == 'R'">Fiduciarias</option>
+                <option value="009" ng-if="type == 'R'">Fondos de Empleados</option>
+                <option value="010">Impuestos</option>
+                <option value="011" ng-if="type == 'R'">Otros Pagos</option>
+                <option value="012" ng-if="type == 'R'">Salud</option>
+                <option value="013" ng-if="type == 'R'">Educaci&oacute;n</option>
+            </select>
+        </div>
+
+        <label class="col-md-2 col-md-offset-1 padding-label">
+            Subcategor&iacute;a
+        </label>
+
+        <div class="col-md-3" style="padding-top: 5px;">
+            <select class="form-control" ng-model="chATM.subcategory" required >
+                <option value=""></option>
+                <option value="001">Bogot&aacute;</option>
+                <option value="002">Medell&iacute;n</option>
+                <option value="003">Cali</option>
+                <option value="004">Barranquilla</option>
+                <option value="006">Costa Atl&aacute;ntica</option>
+                <option value="007">Pereira</option>
+                <option value="008">Neiva</option>
+                <option value="009">Manizales</option>
+                <option value="010">Bucaramanga</option>
+                <option value="011">C&uacute;cuta</option>
+                <option value="012">Cartagena</option>
+                <option value="013">Facatativ&aacute;</option>
+                <option value="015">Villavicencio</option>
+                <option value="023">Pasto</option>
+                <option value="099">Todo el pa&iacute;s</option>
+            </select>
+        </div>
+
+    </div>
+
+    <div class="form-group row">
+        <span class="label label-primary center-block" style="margin: 1%;font-size: 100%;">Anexos o Im&aacute;genes</span>
+    </div>
+
+    <div class="form-group row" >
+        <label class="col-md-2 padding-label">Anexo</label>
+        <div class="col-md-3" style="padding-top: 5px;">
+            <select class="form-control" ng-model="chATM.attachmentType" required >
+                <option value=""></option>
+                <option value="FO">Factura original</option>
+                <option value="EBD">Ejemplo Base de Datos</option>
+                <option value="CCB">Cronograma Cargue Base de Datos</option>
+                <option value="OCS">Imagen de Pantalla</option>
+            </select>
+        </div>
+        <button class="btn btn-primary col-md-offset-2 col-md-3" type="button" ng-click="addChATMAttachmentFile()" style="margin-top: 5px;margin-bottom: 1%;margin-left: 3%;">Cargue Anexo</button>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-xs-2 padding-label">Adjunto</label>
+        <div class="col-xs-10">
+            <input type="file" class="form-control" name="fileATM" id="fileATM" required >
+        </div>
+    </div>
+
+
+    </div>
+        <div class="panel panel-default col-xs-offset-1 col-xs-10" style="padding: 0px; margin-bottom: 1%;" ng-if="chATM.attachments.length > 0">
+            <div class="panel-heading" >Adjuntos:</div>
+            <ul class="list-group ">
+                <li class="list-group-item" ng-repeat="data in chATM.attachments">{{data.file_res.name}} <a ng-click="removeChATMAttachmentFile($index)">eliminar</a></li>
+            </ul>
+        </div>
+    <div class="center-block row" style="width: 20%" >
+        <button class="btn btn-primary col-xs-12" type="submit">Guardar</button>
+    </div>
+</form>

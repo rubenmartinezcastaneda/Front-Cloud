@@ -1,0 +1,138 @@
+<div ng-include="'view/main_header.html'" style="padding-bottom: 1%;"></div> <div ng-controller="ApplicationController" >
+    <div class="row affix-row" >
+        <div class="col-sm-3 col-md-2 affix-sidebar" id="menu">
+            <div ng-include="'view/menu.html'"></div>
+        </div>
+        <div class="col-sm-9 col-md-9 affix-content">
+
+            <div ng-include="'view/menu_top_user.html'"></div>
+
+            <div class="row">
+                <div class="col-md-8">
+                    <h3 style="margin-left: 2%;margin-bottom: 3%;">Modificaci&oacute;n de Usuarios</h3>
+                </div>
+            </div>
+
+            <div class="container-fluid " ng-controller="UserManagerCtrl">
+                <form ng-submit="searchUser()" style="margin: 1%; margin-top: 0px;">
+                    <div class="form-group row">
+                        <div class="col-md-3">
+                            <label class="padding-label" style="text-align: center;">
+                                B&uacute;squeda por C&oacute;digo de Usuario
+                            </label>
+                        </div>
+                        <div class="col-md-4" style="margin-bottom: 1%;">
+                            <input type='text' class="form-control" required ng-model="auxData.search.code" maxlength="7"/>
+                        </div>
+                        <button class="btn btn-primary col-md-2 col-xs-12 " type="submit" style="margin-bottom: 1%;">
+                            Consultar <span class="glyphicon glyphicon-search" />
+                        </button>
+                    </div>
+                </form>
+
+                <form ng-submit="modifyUser()" style="margin: 1%; margin-top: 0px;">
+                    <div class="form-group row">
+                        <span class="label label-primary center-block" style="margin: 1%;font-size: 100%;">
+                            Datos Personales
+                        </span>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-md-4">
+                            <label class="col-xs-12 padding-label" style="text-align: center;">C&oacute;digo de Usuario</label>
+                            <div class="col-xs-12">
+                                <input type='text' class="form-control" ng-model="auxData.user.code" required maxlength="7" readonly/>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="col-xs-12 padding-label" style="text-align: center;">Nombre de Usuario</label>
+                            <div class="col-xs-12">
+                                <input type='text' class="form-control" readonly ng-model="auxData.user.name"/>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="col-xs-12 padding-label" style="text-align: center;">Tel&eacute;fono</label>
+                            <div class="col-xs-12">
+                                <input type='text' class="form-control" readonly ng-model="auxData.user.phoneNumber"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-md-4">
+                            <label class="col-xs-12 padding-label" style="text-align: center;">Tipo de ID</label>
+                            <div class="col-xs-12">
+                                <input type='text' class="form-control" readonly ng-model="auxData.user.idType"/>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="col-xs-12 padding-label" style="text-align: center;">Identificaci&oacute;n</label>
+                            <div class="col-xs-12">
+                                <input type='text' class="form-control" readonly ng-model="auxData.user.idNumber"/>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="col-xs-12 padding-label" style="text-align: center;">Correo Electr&oacute;nico</label>
+                            <div class="col-xs-12">
+                                <input type='text' class="form-control" readonly ng-model="auxData.user.email"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row" ng-if="isValid">
+                        <span class="label label-primary center-block" style="margin: 1%;font-size: 100%;">
+                            Tipo de Perfil
+                        </span>
+                    </div>
+
+                    <div class="form-group row" ng-repeat="data in getProfileList()" ng-if="isValid">
+                        <div class="col-md-4" ng-if="data[0] != undefined">
+                            <div class="col-xs-12">
+                                <label>
+                                    <input
+                                            type="checkbox"
+                                            ng-click="selectionProfile(data[0])"
+                                            ng-checked="data[0].select"
+                                            ng-value="data[0].idProfile"
+                                    >
+                                    {{data[0].name}}
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-4" ng-if="data[1] != undefined">
+                            <div class="col-xs-12">
+                                <label>
+                                    <input
+                                            type="checkbox"
+                                            ng-click="selectionProfile(data[1])"
+                                            ng-checked="data[1].select"
+                                            ng-value="data[1].idProfile"
+                                    >
+                                    {{data[1].name}}
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-4" ng-if="data[2] != undefined">
+                            <div class="col-xs-12">
+                                <label>
+                                    <input
+                                            type="checkbox"
+                                            ng-click="selectionProfile(data[2])"
+                                            ng-checked="data[2].select"
+                                            ng-value="data[2].idProfile"
+                                    >
+                                    {{data[2].name}}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row center-block" style="width: 40%; float: right">
+                        <button class="btn btn-primary col-md-5 col-xs-12 " type="submit" style="margin-bottom: 5px;">Aceptar</button>
+                        <button class="btn btn-primary col-md-offset-2 col-md-5 col-xs-12 " type="button" style="margin-bottom: 5px;" ng-click="backMain()">Volver</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

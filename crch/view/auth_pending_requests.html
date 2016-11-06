@@ -1,0 +1,98 @@
+<div ng-include="'view/main_header.html'" style="padding-bottom: 1%;"></div> <div ng-controller="ApplicationController" >
+    <div class="row affix-row" >
+        <div class="col-sm-3 col-md-2 affix-sidebar" id="menu">
+            <div ng-include="'view/menu.html'"></div>
+        </div>
+        <div class="col-sm-9 col-md-9 affix-content" ng-controller="AuthorizerManagerCtrl" ng-init="getListValues('P')">
+            <div ng-include="'view/menu_top_authorizer.html'"></div>
+
+            <h2>
+                Solicitudes Pendientes
+            </h2>
+
+            <div ng-if="dataTable.length == 0">
+                <h3>
+                    No hay solicitudes pendientes
+                </h3>
+            </div>
+
+            <div ng-if="dataTable.length > 0"  class="form-group row center-block table-responsive">
+                <table class="table table-bordered">
+                    <tr class="active">
+                        <th colspan="9">
+                            SOLICITUDES PENDIENTES
+                        </th>
+                    </tr>
+
+                    <tr class="active">
+                        <th>
+                            No. Solicitud
+                        </th>
+                        <th>
+                            No. Convenio
+                        </th>
+                        <th>
+                            No. de Identificaci&oacute;n
+                        </th>
+                        <th>
+                            Nombre Convenio
+                        </th>
+                        <th>
+                            Estado
+                        </th>
+                        <th>
+                            Fecha Env&iacute;o
+                        </th>
+                        <th>
+                            Hora de Env&iacute;o
+                        </th>
+                        <th>
+                            Servicio
+                        </th>
+                        <th>
+                            Campo Modificado
+                        </th>
+                    </tr>
+                    <tr ng-repeat="data in dataTable">
+                       <td>
+                           {{data.requestId}}
+                       </td>
+                        <td>
+                            {{data.agreementId}}
+                        </td>
+                        <td>
+                            {{data.idNumber}}
+                        </td>
+                        <td>
+                            <a ng-click="setParametersDetail(data.requestId, 'P')">
+                                {{data.agreementName}}
+                            </a>
+                        </td>
+                        <td>
+                            {{data.requestStatus}}
+                        </td>
+                        <td>
+                            {{data.sendDate}}
+                        </td>
+                        <td>
+                            {{data.sendHour}}
+                        </td>
+                        <td>
+                            {{data.service}}
+                        </td>
+                        <td>
+                            {{data.modField}}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <form>
+                <div class="form-group row center-block" style="width: 40%; margin-left: 60%">
+                    <button class="btn btn-primary col-md-5 col-xs-12" type="button" ng-click="printTable(dataTable,'P')" style="margin-right: 5%; margin-bottom: 1%;" >Imprimir <span class="glyphicon glyphicon-print" /></button>
+                    <button class="btn btn-primary col-md-5 col-xs-12" ng-click="goBack(action)" style="margin-right: 5%; margin-bottom: 1%;">Volver</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

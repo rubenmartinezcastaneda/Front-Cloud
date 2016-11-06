@@ -1,0 +1,86 @@
+<form ng-submit="savePingen(pingen)" ng-controller="RequestAgreementCtrl">
+    <div class="form-group row">
+        <label class="col-md-2 padding-label">Tipo de Pin</label>
+        <div class="col-md-4" style="padding-top: 5px;">
+            <select class="form-control" ng-model="pingen.type" required >
+                <option value=""></option>
+                <option value="TU">Pin Tipo Universidad</option>
+                <option value="TB" >Pin Tipo BBVA</option>
+                <option value="TI">Pin Tipo Identificaci&oacute;n</option>
+                <option value="TA">Pin Tipo Aleatorio</option>
+                <option value="BD">Pin Base de Datos</option>
+                <option value="WS">Pin Web Services</option>
+            </select>
+        </div>
+
+        <label class="col-md-2 padding-label" ng-if="pingen.type != 'TA'">Algoritmo</label>
+        <div class="col-md-3" style="padding-top: 5px;" ng-if="pingen.type != 'TA'">
+            <label class="radio-inline">
+                <input type="radio" ng-model="pingen.algorythm" ng-value="'B10'">
+                Base 10
+            </label>
+            <label class="radio-inline">
+                <input type="radio" ng-model="pingen.algorythm" ng-value="'B08'">
+                Base 8
+            </label>
+            <label class="radio-inline">
+                <input type="radio" ng-model="pingen.algorythm" ng-value="'B06'">
+                Base 6
+            </label>
+        </div>
+    </div>
+
+    <div class="form-group row" ng-if="pingen.type == 'TB' || pingen.type == 'TI' || pingen.type == 'WS'" >
+        <div class="panel panel-default col-xs-offset-1 col-xs-10" style="padding: 0px;" ng-repeat="data in pingen.fixedValues">
+            <div class="panel-heading">Dato Fijo {{$index + 1}}</div>
+            <div class="panel-body">
+                <div class="form-group row">
+                    <label class="col-md-2 padding-label">Campo Fijo</label>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control" required ng-model="data.fixedField">
+                    </div>
+                    <label class="col-md-offset-1 col-md-2 padding-label">Descripci&oacute;n</label>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control" required ng-model="data.description">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-md-2 padding-label">Importe M&iacute;nimo</label>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control" required ng-model="data.minAmount">
+                    </div>
+                    <label class="col-md-offset-1 col-md-2 padding-label">Importe M&aacute;ximo</label>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control" required ng-model="data.maxAmount">
+                    </div>
+                </div>
+
+                <div class="form-group center-block row" style="width: 45%" >
+                    <button class="btn btn-primary col-md-5 col-xs-12" type="button" ng-click="addFixedValue()" style="margin-bottom: 5px;">A&ntilde;adir Dato Fijo</button>
+                    <button class="btn btn-primary col-md-offset-2 col-md-5 col-xs-12" type="button" ng-click="removeFixedValue($index)">Borrar Dato Fijo</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row" ng-if="pingen.type == 'TA'">
+        <label class="col-md-2 padding-label">Num&eacute;rico / Alfanum&eacute;rico</label>
+        <div class="col-md-3">
+            <select class="form-control" ng-model="pingen.numAlphnum" required >
+                <option value=""></option>
+                <option value="NU">Num&eacute;rico</option>
+                <option value="AN" >Alfanum&eacute;rico</option>
+            </select>
+        </div>
+
+        <label class="col-md-3 col-md-offset-1 padding-label">N&uacute;mero de D&iacute;gitos</label>
+        <div class="col-md-3">
+            <input type="text" class="form-control" required ng-model="pingen.numDigit">
+        </div>
+    </div>
+
+    <div class="center-block row" style="width: 20%" >
+        <button class="btn btn-primary col-xs-12" type="submit">Guardar</button>
+    </div>
+</form>

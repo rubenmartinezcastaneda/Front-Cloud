@@ -1,0 +1,499 @@
+<form ng-submit="saveConfReferences(confreferences)" ng-controller="RequestAgreementCtrl">
+    <div class="form-group row">
+        <label class="col-md-2 padding-label">Campo</label>
+        <div class="col-md-4" style="padding-top: 5px;">
+            <select class="form-control" ng-model="confreferences.field" required >
+                <option value=""></option>
+                <option value="REF">Referencia</option>
+                <option value="ADI" >Adicional</option>
+                <option value="VAF">Valor Fijo</option>
+                <option value="FEC">Fecha</option>
+                <option value="VAL">Valor</option>
+                <option value="MSJ">Mensaje</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group row" ng-if="confreferences.field == 'MSJ'">
+        <div class="panel panel-default col-xs-offset-1 col-xs-10" style="padding: 0px;" ng-if="confreferences.field == 'MSJ'">
+            <div class="panel-heading">
+                Mensaje Informativo
+            </div>
+
+            <div class="panel-body">
+                <div class="form-group row" >
+                    <label class="col-md-2 padding-label">Formato</label>
+                    <div class="col-md-2" style="padding-top: 5px;">
+                        <select class="form-control" ng-model="confreferences.message.format" required >
+                            <option value="" ></option>
+                            <option value="ALFANUM" >Alfanum&eacute;rico</option>
+                            <option value="NUMERIC" >Num&eacute;rico</option>
+                            <option value="FECHA01" >Fecha (AAAAMMDD)</option>
+                            <option value="FECHA02" >Fecha (DDMMAAAA)</option>
+                        </select>
+                    </div>
+
+                    <label class="col-md-2 padding-label">Alineaci&oacute;n</label>
+                    <div class="col-md-2" style="padding-top: 5px;">
+                        <select class="form-control" ng-model="confreferences.message.align" required >
+                            <option value="" ></option>
+                            <option value="RIGHT" >A la derecha</option>
+                            <option value="LEFT" >A la izquierda</option>
+                        </select>
+                    </div>
+
+                    <label class="col-md-2 padding-label">Car&aacute;cter de Relleno</label>
+                    <div class="col-md-2" style="padding-top: 5px;">
+                        <select class="form-control" ng-model="confreferences.message.fillerChar" required >
+                            <option value="" ></option>
+                            <option value="ZEROS" >Ceros</option>
+                            <option value="SPACES" >Espacios</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-2 padding-label">Mensaje Informativo</label>
+                    <div class="col-md-10">
+                        <textarea class="form-control" rows="5" maxlength="30" required ng-model="confreferences.message.text" />
+                    </div>
+                </div>
+                <div class="form-group row" style="padding-right: 2%;">
+                    <button class="btn btn-primary col-md-offset-10 col-md-2" type="button" ng-click="deleteMessage()" style="margin-bottom: 5px;">Borrar Mensaje</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="form-group row" ng-if="confreferences.field != '' && confreferences.field != 'MSJ'" >
+
+        <div class="panel panel-default col-xs-offset-1 col-xs-10" style="padding: 0px;" ng-repeat="data in getArrayReference()">
+            <div class="panel-heading">
+                <span ng-if="confreferences.field == 'REF'">Referencia </span>
+                <span ng-if="confreferences.field == 'ADI'">Referencia </span>
+                <span ng-if="confreferences.field == 'VAF'">Valor Fijo </span>
+                <span ng-if="confreferences.field == 'FEC'">Fecha </span>
+                <span ng-if="confreferences.field == 'VAL'">Valor </span>
+                {{$index + 1}}
+            </div>
+
+            <div class="panel-body">
+                <div ng-if="confreferences.field == 'REF' || confreferences.field == 'ADI'">
+                    <div class="form-group row">
+                        <label class="col-md-2 padding-label">Descripci&oacute;n del Campo</label>
+                        <div class="col-md-3">
+                            <input type="text" class="form-control" required ng-model="data.description">
+                        </div>
+                        <label class="col-md-offset-1 col-md-2 padding-label">Formato</label>
+                        <div class="col-md-3">
+                            <select class="form-control" ng-model="data.format" required >
+                                <option value=""></option>
+                                <option value="ALN">Alfanum&eacute;rico</option>
+                                <option value="NUM" >Num&eacute;rico</option>
+                                <option value="FE1">Fecha (AAAAMMDD)</option>
+                                <option value="FE2">Fecha (DDMMAAAA)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-md-2 padding-label">Alineaci&oacute;n</label>
+                        <div class="col-md-3">
+                            <select class="form-control" ng-model="data.alignment" required >
+                                <option value=""></option>
+                                <option value="DE">A la derecha</option>
+                                <option value="IZ" >A la Izquierda </option>
+                            </select>
+                        </div>
+
+                        <label class="col-md-offset-1 col-md-2 padding-label">Longitud Campo</label>
+                        <div class="col-md-3">
+                            <input type="text" class="form-control" required ng-model="data.fieldLength">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-md-2 padding-label">Posici&oacute;n de Entrada</label>
+                        <div class="col-md-2">
+                            <input type="text" class="form-control" required ng-model="data.entryPosition">
+                        </div>
+                        <label class="col-md-2 padding-label">Posici&oacute;n de Salida</label>
+                        <div class="col-md-2">
+                            <input type="text" class="form-control" required ng-model="data.exitPosition">
+                        </div>
+                        <label class="col-md-2 padding-label">Caracter de Relleno</label>
+                        <div class="col-md-2">
+                            <select class="form-control" ng-model="data.fillerChar" required >
+                                <option value=""></option>
+                                <option value="ZE">Ceros</option>
+                                <option value="SP" >Espacios</span></option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-md-2 padding-label">Ayuda R&aacute;pida Campo</label>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" required ng-model="data.fastHelp">
+                        </div>
+                    </div>
+
+                    <div class="form-group row" ng-if="type == 'I'">
+                        <label class="col-md-2 padding-label">Campo Municipio</label>
+                        <div class="col-md-2" style="padding-top: 5px;">
+                            <label class="radio-inline">
+                                <input type="radio" ng-model="data.municipalityField" ng-value=true>
+                                Si
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" ng-model="data.municipalityField" ng-value=false>
+                                No
+                            </label>
+                        </div>
+
+                        <label class="col-md-2 padding-label">Impuesto Sobretasa</label>
+                        <div class="col-md-2" style="padding-top: 5px;">
+                            <label class="radio-inline">
+                                <input type="radio" ng-model="data.taxOver" ng-value=true>
+                                Si
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" ng-model="data.taxOver" ng-value=false>
+                                No
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-md-2 padding-label">Rutina Validaci&oacute;n</label>
+                        <div class="col-md-3">
+                            <select class="form-control" ng-model="data.validationRutine" required >
+                                <option value=""></option>
+                                <option value="EMPT">En blanco</option>
+                                <option value="MO06" >M&oacute;dulo 06</option>
+                                <option value="MO10" >M&oacute;dulo 10</option>
+                                <option value="MO11" >M&oacute;dulo 11</option>
+                                <option value="MO15" >M&oacute;dulo 15</option>
+                                <option value="DODI" >Modo Doble D&iacute;gito</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div ng-if="confreferences.field == 'VAF'">
+                    <div class="form-group row">
+                        <label class="col-md-2 padding-label">Descripci&oacute;n del Campo</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" maxlength="30" required ng-model="data.description">
+                        </div>
+                    </div>
+
+                    <div class="form-group row" >
+                        <label class="col-md-2 padding-label">Consecutivo</label>
+                        <div class="col-md-3">
+                            <input type="text" maxlength="3" class="form-control" required ng-model="data.rutine.consecutive">
+                        </div>
+                        <label class="col-md-offset-1 col-md-2 padding-label">Formato</label>
+                        <div class="col-md-3">
+                            <select class="form-control" ng-model="data.format" required >
+                                <option value="" ></option>
+                                <option value="ALFANUM" >Alfanum&eacute;rico</option>
+                                <option value="NUMERIC" >Num&eacute;rico</option>
+                                <option value="FECHA01" >Fecha (AAAAMMDD)</option>
+                                <option value="FECHA02" >Fecha (DDMMAAAA)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row" >
+                        <label class="col-md-2 padding-label">Longitud Campo</label>
+                        <div class="col-md-2" style="padding-top: 5px;">
+                            <input type="text" maxlength="3" class="form-control" required ng-model="data.fieldLength">
+                        </div>
+
+                        <label class="col-md-2 padding-label">Indicador de Importe</label>
+                        <div class="col-md-2" style="padding-top: 5px;">
+                            <label class="radio-inline">
+                                <input type="radio" ng-model="data.indAmount" ng-value=true>
+                                Si
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" ng-model="data.indAmount" ng-value=false>
+                                No
+                            </label>
+                        </div>
+
+                        <label class="col-md-2 padding-label">Campo Obligatorio</label>
+                        <div class="col-md-2" style="padding-top: 5px;">
+                            <label class="radio-inline">
+                                <input type="radio" ng-model="data.requiredField" ng-value=true>
+                                Si
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" ng-model="data.requiredField" ng-value=false>
+                                No
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group row" >
+                        <label class="col-md-2 padding-label">Importe M&iacute;nimo</label>
+                        <div class="col-md-3">
+                            <input type="text" maxlength="18" class="form-control" required ng-model="data.minAmount">
+                        </div>
+                        <label class="col-md-offset-1 col-md-2 padding-label">Importe M&aacute;ximo</label>
+                        <div class="col-md-3">
+                            <input type="text" maxlength="18" class="form-control" required ng-model="data.maxAmount">
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div ng-if="confreferences.field == 'VAL'">
+                    <div class="form-group row">
+                        <label class="col-md-2 padding-label">Descripci&oacute;n del Campo</label>
+                        <div class="col-md-3">
+                            <input type="text" class="form-control" maxlength="30" required ng-model="data.description">
+                        </div>
+
+                        <label class="col-md-offset-1 col-md-2 padding-label">Formato</label>
+                        <div class="col-md-3">
+                            <select class="form-control" ng-model="data.format" required >
+                                <option value="" ></option>
+                                <option value="ALFANUM" >Alfanum&eacute;rico</option>
+                                <option value="NUMERIC" >Num&eacute;rico</option>
+                                <option value="FECHA01" >Fecha (AAAAMMDD)</option>
+                                <option value="FECHA02" >Fecha (DDMMAAAA)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row" >
+                        <label class="col-md-2 padding-label">Posici&oacute;n de Entrada</label>
+                        <div class="col-md-3">
+                            <input type="text" maxlength="3" class="form-control" required ng-model="data.entryPosition">
+                        </div>
+                        <label class="col-md-offset-1 col-md-2 padding-label">Longitud Campo</label>
+                        <div class="col-md-3">
+                            <input type="text" maxlength="3" class="form-control" required ng-model="data.fieldLength">
+                        </div>
+                    </div>
+
+                    <div class="form-group row" >
+                        <label class="col-md-2 padding-label">Alineaci&oacute;n</label>
+                        <div class="col-md-2" style="padding-top: 5px;">
+                            <select class="form-control" ng-model="data.align" required >
+                                <option value="" ></option>
+                                <option value="RIGHT" >A la derecha</option>
+                                <option value="LEFT" >A la izquierda</option>
+                            </select>
+                        </div>
+
+                        <label class="col-md-2 padding-label">Car&aacute;cter de Relleno</label>
+                        <div class="col-md-2" style="padding-top: 5px;">
+                            <select class="form-control" ng-model="data.fillerChar" required >
+                                <option value="" ></option>
+                                <option value="ZEROS" >Ceros</option>
+                                <option value="SPACES" >Espacios</option>
+                            </select>
+                        </div>
+
+                        <label class="col-md-2 padding-label">Longitud en Barras</label>
+                        <div class="col-md-2" style="padding-top: 5px;">
+                            <input type="text" maxlength="6" class="form-control" required ng-model="data.lengthBars">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-md-2 padding-label">Ayuda R&aacute;pida Campo</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" maxlength="30" required ng-model="data.fastHelp">
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div ng-if="confreferences.field == 'FEC'">
+                    <div class="form-group row">
+                        <label class="col-md-2 padding-label">Descripci&oacute;n del Campo</label>
+                        <div class="col-md-3">
+                            <input type="text" class="form-control" maxlength="30" required ng-model="data.description">
+                        </div>
+
+                        <label class="col-md-offset-1 col-md-2 padding-label">Formato</label>
+                        <div class="col-md-3">
+                            <select class="form-control" ng-model="data.format" required >
+                                <option value="" ></option>
+                                <option value="ALFANUM" >Alfanum&eacute;rico</option>
+                                <option value="NUMERIC" >Num&eacute;rico</option>
+                                <option value="FECHA01" >Fecha (AAAAMMDD)</option>
+                                <option value="FECHA02" >Fecha (DDMMAAAA)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row" >
+                        <label class="col-md-2 padding-label">Posici&oacute;n de Entrada</label>
+                        <div class="col-md-3">
+                            <input type="text" maxlength="3" class="form-control" required ng-model="data.entryPosition">
+                        </div>
+                        <label class="col-md-offset-1 col-md-2 padding-label">Longitud Campo</label>
+                        <div class="col-md-3">
+                            <input type="text" maxlength="3" class="form-control" required ng-model="data.fieldLength">
+                        </div>
+                    </div>
+
+                    <div class="form-group row" >
+                        <label class="col-md-2 padding-label">Alineaci&oacute;n</label>
+                        <div class="col-md-2" style="padding-top: 5px;">
+                            <select class="form-control" ng-model="data.align" required >
+                                <option value="" ></option>
+                                <option value="RIGHT" >A la derecha</option>
+                                <option value="LEFT" >A la izquierda</option>
+                            </select>
+                        </div>
+
+                        <label class="col-md-2 padding-label">Car&aacute;cter de Relleno</label>
+                        <div class="col-md-2" style="padding-top: 5px;">
+                            <select class="form-control" ng-model="data.fillerChar" required >
+                                <option value="" ></option>
+                                <option value="ZEROS" >Ceros</option>
+                                <option value="SPACES" >Espacios</option>
+                            </select>
+                        </div>
+
+                        <label class="col-md-2 padding-label">Longitud en Barras</label>
+                        <div class="col-md-2" style="padding-top: 5px;">
+                            <input type="text" maxlength="6" class="form-control" required ng-model="data.lengthBars">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-md-2 padding-label">Ayuda R&aacute;pida Campo</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" maxlength="30" required ng-model="data.fastHelp">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div ng-if="data.validationRutine == 'MO06' ||
+                            data.validationRutine == 'MO10' ||
+                            data.validationRutine == 'MO11' ||
+                            data.validationRutine == 'MO15' ||
+                            data.validationRutine == 'DODI'
+                           ">
+
+                    <div class="form-group row">
+                        <span class="label label-primary center-block" style="margin: 1%;font-size: 100%;">Informaci&oacute;n Rutina</span>
+                    </div>
+
+                    <div class="form-group row" >
+                        <label class="col-md-2 padding-label">Campo</label>
+                        <div class="col-md-3">
+                            <select class="form-control" ng-model="data.rutine.field" required >
+                                <option value=""></option>
+                                <option value="REF">Referencia</option>
+                                <option value="ADI" >Adici&oacute;n</option>
+                            </select>
+                        </div>
+                        <label class="col-md-offset-1 col-md-2 padding-label">Descripci&oacute;n del Campo</label>
+                        <div class="col-md-3">
+                            <input type="text" maxlength="30" class="form-control" required ng-model="data.rutine.fieldDescription">
+                        </div>
+                    </div>
+
+                    <div class="form-group row" >
+                        <label class="col-md-2 padding-label">Consecutivo</label>
+                        <div class="col-md-3">
+                            <input type="text" maxlength="3" class="form-control" required ng-model="data.rutine.consecutive">
+                        </div>
+                        <label class="col-md-offset-1 col-md-2 padding-label">Tipo Parametro</label>
+                        <div class="col-md-3">
+                            <select class="form-control" ng-model="data.rutine.paramType" required >
+                                <option value=""></option>
+                                <option value="REF">Variable</option>
+                                <option value="ADI" >Constante</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row" >
+                        <label class="col-md-2 padding-label">Nro. Parametro</label>
+                        <div class="col-md-3">
+                            <input type="text" maxlength="3" class="form-control" required ng-model="data.rutine.paramNumber">
+                        </div>
+                        <label class="col-md-offset-1 col-md-2 padding-label">Longitud Referencia Inicial</label>
+                        <div class="col-md-3">
+                            <input type="text" maxlength="3" class="form-control" required ng-model="data.rutine.lengthInitRef">
+                        </div>
+                    </div>
+
+                    <div class="form-group row" >
+                        <label class="col-md-2 padding-label">Posici&oacute;n Inicial de Referencia</label>
+                        <div class="col-md-3">
+                            <input type="text" maxlength="3" class="form-control" required ng-model="data.rutine.posInitRef">
+                        </div>
+                        <label class="col-md-offset-1 col-md-2 padding-label">Longitud Inicial &Aacute;rea Comunicaci&oacute;n</label>
+                        <div class="col-md-3">
+                            <input type="text" maxlength="3" class="form-control" required ng-model="data.rutine.lengthInitComArea">
+                        </div>
+                    </div>
+
+                    <div class="form-group row" >
+                        <label class="col-md-2 padding-label">Posici&oacute;n Inicial &Aacute;rea Comunicaci&oacute;n</label>
+                        <div class="col-md-3">
+                            <input type="text" maxlength="3" class="form-control" required ng-model="data.rutine.posInitComArea">
+                        </div>
+                        <label class="col-md-offset-1 col-md-2 padding-label">Constante</label>
+                        <div class="col-md-3">
+                            <input type="text" maxlength="56" class="form-control" required ng-model="data.rutine.constant">
+                        </div>
+                    </div>
+
+                    <div class="form-group right row"  ng-if="confreferences.field == 'REF'">
+                        <button class="btn btn-primary col-md-offset-9 col-md-2 col-xs-12" type="button" ng-click="deleteRutineReference($index)" style="margin-bottom: 5px;">Borrar Rutina</button>
+                    </div>
+                    <div class="form-group right row"  ng-if="confreferences.field == 'ADI'">
+                        <button class="btn btn-primary col-md-offset-9 col-md-2 col-xs-12" type="button" ng-click="deleteRutineAdditional($index)" style="margin-bottom: 5px;">Borrar Rutina</button>
+                    </div>
+                </div>
+
+
+
+
+                <div class="form-group center-block row" style="width: 45%"  ng-if="confreferences.field == 'REF'">
+                    <button class="btn btn-primary col-md-6 col-xs-12" type="button" ng-click="addReference()" style="margin-bottom: 5px;">A&ntilde;adir Otra Referencia</button>
+                    <button class="btn btn-primary col-md-offset-1 col-md-5 col-xs-12" type="button" ng-click="removeReference($index)">Borrar Referencia</button>
+                </div>
+
+                <div class="form-group center-block row" style="width: 45%"  ng-if="confreferences.field == 'ADI'">
+                    <button class="btn btn-primary col-md-6 col-xs-12" type="button" ng-click="addRefAdditional()" style="margin-bottom: 5px;">A&ntilde;adir Otra Referencia</button>
+                    <button class="btn btn-primary col-md-offset-1 col-md-5 col-xs-12" type="button" ng-click="removeRefAdditional($index)">Borrar Referencia</button>
+                </div>
+
+                <div class="form-group center-block row" style="width: 45%"  ng-if="confreferences.field == 'VAF'">
+                    <button class="btn btn-primary col-md-6 col-xs-12" type="button" ng-click="addRefFixedValue()" style="margin-bottom: 5px;">A&ntilde;adir Otra Valor Fijo</button>
+                    <button class="btn btn-primary col-md-offset-1 col-md-5 col-xs-12" type="button" ng-click="removeRefFixedValue($index)">Borrar Valor Fijo</button>
+                </div>
+
+                <div class="form-group center-block row" style="width: 45%"  ng-if="confreferences.field == 'FEC'">
+                    <button class="btn btn-primary col-md-5 col-xs-12" type="button" ng-click="addRefDate()" style="margin-bottom: 5px;">A&ntilde;adir Fecha</button>
+                    <button class="btn btn-primary col-md-offset-2 col-md-5 col-xs-12" type="button" ng-click="removeRefDate($index)">Borrar Fecha</button>
+                </div>
+
+                <div class="form-group center-block row" style="width: 45%"  ng-if="confreferences.field == 'VAL'">
+                    <button class="btn btn-primary col-md-5 col-xs-12" type="button" ng-click="addRefValue()" style="margin-bottom: 5px;">A&ntilde;adir Valor</button>
+                    <button class="btn btn-primary col-md-offset-2 col-md-5 col-xs-12" type="button" ng-click="removeRefValue($index)">Borrar Valor</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="center-block row" style="width: 20%" >
+        <button class="btn btn-primary col-xs-12" type="submit">Guardar</button>
+    </div>
+</form>

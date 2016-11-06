@@ -1,0 +1,80 @@
+@font-face {
+    font-family: "BBVA Family";
+    src: url("fonts/bbvaweb-book-woff.woff") format('woff');
+}
+
+* {
+    font-family: "BBVA Family";
+    margin:0;
+    padding:0;
+    position: relative;
+}
+
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+
+.header {
+    width: 100%;
+    margin: 0px;
+    display: inline-block;
+    border-bottom: solid;
+    border-color: #0078d2;
+}
+
+.header .user-info{
+    padding-top: 2%;
+}
+
+.header .title {
+    font-size: medium;
+    padding-top: 3%;
+    color: #0078d2;
+}
+
+.header .title_name {
+    font-size: medium;
+    padding-top: 0%;
+    color: #0078d2;
+}
+
+.header .title_min {
+    font-size: 75%;
+}
+
+.header p {
+    margin: 0;
+}
+
+.header .image {
+    min-height: 117px;
+    padding-left: 0px;
+    min-width: 200px;
+}
+
+.globalContainer{
+    padding-top: 1%;
+}
+
+.form-signin .note{
+    margin-top: 6%;
+    margin-bottom: 6%;
+}
+
+.padding-label {
+    padding-top: 7px;
+    padding-right: 0px;
+}
+
+.arrow-toggle .icon-arrow-down,
+.arrow-toggle.collapsed .icon-arrow-up {
+    display: inline-block;
+}
+.arrow-toggle.collapsed .icon-arrow-down,
+.arrow-toggle .icon-arrow-up {
+    display: none;
+}

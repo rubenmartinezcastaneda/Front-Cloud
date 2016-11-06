@@ -1,0 +1,71 @@
+<form >
+    <div class="form-group row">
+        <label class="col-md-2 padding-label">Tipo</label>
+        <div class="col-md-2" style="padding-top: 5px;">
+            <select class="form-control" ng-model="captype.type" >
+                <option value="MAN" ng-if="captype.type == 'MAN'">Manual</option>
+                <option value="CBA" ng-if="captype.type == 'CBA'">C&oacute;digo de Barras</option>
+                <option value="MCB" ng-if="captype.type == 'MCB'">Manual y C&oacute;digo de Barras</option>
+                <option value="TJR" ng-if="captype.type == 'TJR'">Tarjeta de Recaudo</option>
+            </select>
+        </div>
+
+        <label class="col-md-2 padding-label">Valida Valor</label>
+        <div class="col-md-2" style="padding-top: 5px;">
+            <label class="radio-inline">
+                <input type="radio" ng-model="captype.validValue" ng-value=true disabled>
+                Si
+            </label>
+            <label class="radio-inline">
+                <input type="radio" ng-model="captype.validValue" ng-value=false disabled>
+                No
+            </label>
+        </div>
+
+        <label class="col-md-2 padding-label">Valida Fecha</label>
+        <div class="col-md-2" style="padding-top: 5px;">
+            <label class="radio-inline">
+                <input type="radio" ng-model="captype.validDate" ng-value=true disabled>
+                Si
+            </label>
+            <label class="radio-inline">
+                <input type="radio" ng-model="captype.validDate" ng-value=false disabled>
+                No
+            </label>
+        </div>
+    </div>
+
+    <div class="form-group row" ng-if="captype.type == 'CBA' || captype.type == 'MCB' || captype.type == 'TJR'" >
+        <label class="col-md-2 padding-label">C&oacute;digo EAN (415)</label>
+        <div class="col-md-3" style="padding-top: 5px;">
+            <input type='text' class="form-control" ng-model="captype.eanCode" readonly/>
+        </div>
+    </div>
+
+    <div class="form-group row" ng-if="captype.type == 'TJR'" >
+
+        <div class="panel panel-default col-xs-offset-3 col-xs-6" style="padding: 0px;">
+            <div class="panel-heading">Tarjeta de Recaudo</div>
+            <div class="panel-body">
+                <div class="form-group row">
+                    <label class="col-xs-6 padding-label">Expedici&oacute;n</label>
+                    <div class="col-xs-6">
+                        <input type="text" class="form-control" ng-model="captype.expedition" readonly>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-xs-6 padding-label">Reexpedici&oacute;n</label>
+                    <div class="col-xs-6">
+                        <input type="text" class="form-control" ng-model="captype.reexpedition" readonly>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-heading" ng-if="captype.collectFiles.length > 0">Adjuntos:</div>
+            <ul class="list-group ">
+                <li class="list-group-item" ng-repeat="data in captype.collectFiles">{{data.file_res.name}} </li>
+            </ul>
+        </div>
+    </div>
+
+</form>

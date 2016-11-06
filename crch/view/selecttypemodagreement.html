@@ -1,0 +1,29 @@
+<div ng-include="'view/main_header.html'" style="padding-bottom: 1%;"></div> <div ng-controller="ApplicationController" >
+    <div class="row affix-row" >
+        <div class="col-sm-3 col-md-2 affix-sidebar" id="menu">
+            <div ng-include="'view/menu.html'"></div>
+        </div>
+        <div class="col-sm-9 col-md-9 affix-content">
+            <ol class="breadcrumb">
+                <li>Administrador de Solicitudes</li>
+                <li class="active">Modificaci&oacute;n de solicitudes</li>
+            </ol>
+            <form class="form-horizontal" ng-submit="searchForModification(type)" ng-controller="RequestAgreementCtrl">
+                <div class="form-group">
+                    <label class="col-md-2 col-md-offset-1 col-xs-offset-1 control-label">Tipo de Convenio</label>
+                    <div class="col-md-4 col-md-offset-0 col-xs-10 col-xs-offset-1 selectContainer" style="margin-bottom: 5px;">
+                        <select class="form-control" name="type" ng-model="type">
+                            <option value=""></option>
+                            <option value="R">Recaudo Nacional</option>
+                            <option value="I">Impuestos</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2 col-md-offset-0 col-xs-2 col-xs-offset-1">
+                        <button type="submit" class="btn btn-primary ">Continuar</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

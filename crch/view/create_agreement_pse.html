@@ -1,0 +1,34 @@
+<form ng-submit="saveChPSE(chPSE)" ng-controller="RequestAgreementCtrl">
+    <div class="form-group row">
+        <label class="col-md-3 padding-label">
+            Convenio PSE
+        </label>
+        <div class="col-md-2" style="padding-top: 5px;">
+            <label class="radio-inline">
+                <input type="radio" ng-model="chPSE.isAgreementPSE" ng-value=true>
+                Si
+            </label>
+            <label class="radio-inline">
+                <input type="radio" ng-model="chPSE.isAgreementPSE" ng-value=false>
+                No
+            </label>
+        </div>
+        <label class="col-md-offset-1 col-md-3 padding-label">
+            Cup&oacute;n
+        </label>
+        <div class="col-md-2" style="padding-top: 5px;">
+            <label class="radio-inline">
+                <input type="radio" ng-model="chPSE.useCoupon" ng-value=true>
+                Si
+            </label>
+            <label class="radio-inline">
+                <input type="radio" ng-model="chPSE.useCoupon" ng-value=false>
+                No
+            </label>
+        </div>
+    </div>
+
+    <div class="center-block row" style="width: 20%" >
+        <button class="btn btn-primary col-xs-12" type="submit">Guardar</button>
+    </div>
+</form>

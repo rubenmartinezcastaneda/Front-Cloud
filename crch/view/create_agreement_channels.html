@@ -1,0 +1,177 @@
+<div ng-include="'view/main_header.html'" style="padding-bottom: 1%;"></div> <div ng-controller="ApplicationController" >
+    <div class="row affix-row" >
+        <div class="col-sm-3 col-md-2 affix-sidebar" id="menu">
+            <div ng-include="'view/menu.html'"></div>
+        </div>
+        <div class="col-sm-9 col-md-9 affix-content">
+            <ol class="breadcrumb">
+                <li>Administrador de Solicitudes</li>
+                <li class="active">Alta de solicitudes</li>
+            </ol>
+
+            <div ng-include="'view/menu_top_request.html'"></div>
+
+            <div class="row">
+                <div class="col-md-8">
+                    <h3 style="margin-left: 2%;margin-bottom: 3%; margin-top: 0;">Informaci&oacute;n de Canales</h3>
+                </div>
+                <div class="col-md-4" >
+                    <p class="col-md-4">
+                        Paso 2/3
+                    </p>
+                    <div class="progress" style="margin-left: 4%; margin-right: 4%;">
+                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="67" aria-valuemin="0" aria-valuemax="100" style="width: 67%;">
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="container-fluid " ng-controller="RequestAgreementCtrl">
+                <div class="panel-group" id="mainFormAccordion">
+
+                    <div class="panel panel-default ">
+                        <div class="panel-heading accordion-toggle collapsed question-toggle arrow-toggle" data-toggle="collapse" data-parent="#mainFormAccordion" data-target="#terminalchannel">
+                            <h4 class="panel-title">
+                                <a class="ing">Terminal Financiero</a>
+                                <span class="glyphicon glyphicon-plus icon-arrow-up" aria-hidden="true" style="float: right;" />
+                                <span class="glyphicon glyphicon-minus icon-arrow-down" aria-hidden="true" style="float: right; " />
+                            </h4>
+                        </div>
+                        <div id="terminalchannel" class="panel-collapse collapse" style="height: 0px;">
+                            <div class="panel-body">
+                                <div ng-include="'view/create_agreement_terminals.html'"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default ">
+                        <div class="panel-heading accordion-toggle collapsed question-toggle arrow-toggle" data-toggle="collapse" data-parent="#mainFormAccordion" data-target="#bbvachannel">
+                            <h4 class="panel-title">
+                                <a class="ing">BBVA NET y BBVA NET CASH</a>
+                                <span class="glyphicon glyphicon-plus icon-arrow-up" aria-hidden="true" style="float: right;" />
+                                <span class="glyphicon glyphicon-minus icon-arrow-down" aria-hidden="true" style="float: right; " />
+                            </h4>
+                        </div>
+                        <div id="bbvachannel" class="panel-collapse collapse" style="height: 0px;">
+                            <div class="panel-body">
+                                <div ng-include="'view/create_agreement_bbvanet_cash.html'"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default ">
+                        <div class="panel-heading accordion-toggle collapsed question-toggle arrow-toggle" data-toggle="collapse" data-parent="#mainFormAccordion" data-target="#callcenterchannel">
+                            <h4 class="panel-title">
+                                <a class="ing">Call Center</a>
+                                <span class="glyphicon glyphicon-plus icon-arrow-up" aria-hidden="true" style="float: right;" />
+                                <span class="glyphicon glyphicon-minus icon-arrow-down" aria-hidden="true" style="float: right; " />
+                            </h4>
+                        </div>
+                        <div id="callcenterchannel" class="panel-collapse collapse" style="height: 0px;">
+                            <div class="panel-body">
+                               <div ng-include="'view/create_agreement_callcenter.html'"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default ">
+                        <div class="panel-heading accordion-toggle collapsed question-toggle arrow-toggle" data-toggle="collapse" data-parent="#mainFormAccordion" data-target="#atmchannel">
+                            <h4 class="panel-title">
+                                <a class="ing">ATM</a>
+                                <span class="glyphicon glyphicon-plus icon-arrow-up" aria-hidden="true" style="float: right;" />
+                                <span class="glyphicon glyphicon-minus icon-arrow-down" aria-hidden="true" style="float: right; " />
+                            </h4>
+                        </div>
+                        <div id="atmchannel" class="panel-collapse collapse" style="height: 0px;">
+                            <div class="panel-body">
+                                <div ng-include="'view/create_agreement_atm.html'"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default ">
+                        <div class="panel-heading accordion-toggle collapsed question-toggle arrow-toggle" data-toggle="collapse" data-parent="#mainFormAccordion" data-target="#mobilechannel">
+                            <h4 class="panel-title">
+                                <a class="ing">Banca M&oacute;vil</a>
+                                <span class="glyphicon glyphicon-plus icon-arrow-up" aria-hidden="true" style="float: right;" />
+                                <span class="glyphicon glyphicon-minus icon-arrow-down" aria-hidden="true" style="float: right; " />
+                            </h4>
+                        </div>
+                        <div id="mobilechannel" class="panel-collapse collapse" style="height: 0px;">
+                            <div class="panel-body">
+                                <div ng-include="'view/create_agreement_bbva_movil.html'"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading accordion-toggle collapsed question-toggle arrow-toggle" data-toggle="collapse" data-parent="#mainFormAccordion" data-target="#pagatiempochannel">
+                            <h4 class="panel-title">
+                                <a class="ing">PagaTiempo</a>
+                                <span class="glyphicon glyphicon-plus icon-arrow-up" aria-hidden="true" style="float: right;" />
+                                <span class="glyphicon glyphicon-minus icon-arrow-down" aria-hidden="true" style="float: right; " />
+                            </h4>
+                        </div>
+                        <div id="pagatiempochannel" class="panel-collapse collapse" style="height: 0px;">
+                            <div class="panel-body">
+                                <div ng-include="'view/create_agreement_pagatiempo.html'"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default ">
+                        <div class="panel-heading accordion-toggle collapsed question-toggle arrow-toggle" data-toggle="collapse" data-parent="#mainFormAccordion" data-target="#correspondentchannel">
+                            <h4 class="panel-title">
+                                <a class="ing">Corresponsal Bancario</a>
+                                <span class="glyphicon glyphicon-plus icon-arrow-up" aria-hidden="true" style="float: right;" />
+                                <span class="glyphicon glyphicon-minus icon-arrow-down" aria-hidden="true" style="float: right; " />
+                            </h4>
+                        </div>
+                        <div id="correspondentchannel" class="panel-collapse collapse" style="height: 0px;">
+                            <div class="panel-body">
+                                <div ng-include="'view/create_agreement_correspondent.html'"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default" >
+                        <div class="panel-heading accordion-toggle collapsed question-toggle arrow-toggle" data-toggle="collapse" data-parent="#mainFormAccordion" data-target="#psechannel">
+                            <h4 class="panel-title">
+                                <a class="ing">Tus Pagos PSE</a>
+                                <span class="glyphicon glyphicon-plus icon-arrow-up" aria-hidden="true" style="float: right;" />
+                                <span class="glyphicon glyphicon-minus icon-arrow-down" aria-hidden="true" style="float: right; " />
+                            </h4>
+                        </div>
+                        <div id="psechannel" class="panel-collapse collapse" style="height: 0px;">
+                            <div class="panel-body">
+                                <div ng-include="'view/create_agreement_pse.html'"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default" >
+                        <div class="panel-heading accordion-toggle collapsed question-toggle arrow-toggle" data-toggle="collapse" data-parent="#mainFormAccordion" data-target="#documentattachments">
+                            <h4 class="panel-title">
+                                <a class="ing">Anexo de Documentos</a>
+                                <span class="glyphicon glyphicon-plus icon-arrow-up" aria-hidden="true" style="float: right;" />
+                                <span class="glyphicon glyphicon-minus icon-arrow-down" aria-hidden="true" style="float: right; " />
+                            </h4>
+                        </div>
+                        <div id="documentattachments" class="panel-collapse collapse" style="height: 0px;">
+                            <div class="panel-body">
+                                <div ng-include="'view/create_agreement_attachment.html'"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <form ng-submit="goToStep3()" ng-controller="RequestAgreementCtrl">
+                <div class="center-block row" >
+                    <button class="btn btn-primary col-md-offset-3 col-md-2" type="button" ng-click="goToStep1()">Volver</button>
+                    <button class="btn btn-primary col-md-offset-1 col-md-2" type="submit">Paso 3</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

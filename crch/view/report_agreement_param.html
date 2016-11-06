@@ -1,0 +1,252 @@
+<div class="form-group row">
+   <span class="label label-primary center-block" style="margin: 1%;font-size: 100%;">
+       Informe de Parametr&iacute;a del Convenio
+   </span>
+</div>
+
+<div class="form-group row">
+    <label class="col-md-2 padding-label" >
+        N&uacute;mero de Convenio
+    </label>
+    <div class="col-md-4">
+        <input type='text' class="form-control" maxlength="20" required ng-model="auxData.filter.agreementNumber"/>
+    </div>
+
+    <label class="col-md-2 padding-label">
+        Nombre del Convenio
+    </label>
+    <div class="col-md-4">
+        <input type='text' class="form-control" maxlength="20" required ng-model="auxData.filter.agreementName"/>
+    </div>
+</div>
+
+<div class="form-group row">
+    <label class="col-md-2 padding-label">Fecha Creaci&oacute;n</label>
+    <div class="col-md-4 ">
+        <div class='input-group date'>
+            <input type='text' class="form-control" ng-model="auxData.filter.creationDate" required datetime-picker date-format="dd/MM/yyyy" date-only />
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+        </div>
+    </div>
+
+    <label class="col-md-2 padding-label">Canal</label>
+    <div class="col-md-4 ">
+        <select class="form-control" ng-model="auxData.filter.channel" required>
+            <option value=""></option>
+            <option value="TERM">Terminal Financiero</option>
+            <option value="BNET" >BBVANet</option>
+            <option value="PNET" >BbvaNetcash</option>
+            <option value="CALL" >Call center</option>
+            <option value="ATMS" >ATMS</option>
+            <option value="PAGA" >Pagatiempo</option>
+            <option value="PPSE" >Tus pagos PSE</option>
+            <option value="CBS" >Corresponsal Bancario</option>
+            <option value="MNET" >Banca M&oacute;vil</option>
+        </select>
+    </div>
+</div>
+
+<div class="form-group row">
+    <label class="col-md-2 padding-label">N&uacute;mero de Identificaci&oacute;n</label>
+    <div class="col-md-4">
+        <input type='text' class="form-control" maxlength="20" required ng-model="auxData.filter.idNumber"/>
+    </div>
+</div>
+
+<div class="form-group row center-block" style="width: 40%; margin-left: 60%">
+    <button class="btn btn-primary col-md-5 col-xs-12 " type="button" style="margin-bottom: 5px;" ng-click="genReport(3)">Generar Archivo</button>
+    <button class="btn btn-primary col-md-offset-2 col-md-5 col-xs-12 " type="button" style="margin-bottom: 5px;" ng-click="cleanAux()">Limpiar</button>
+</div>
+
+<div ng-if="auxData.result.length > 0"  class="form-group row center-block table-responsive">
+    <table class="table table-bordered">
+        <tr class="active">
+            <th colspan="29">
+                INFORME DE PARAMETR&Iacute;A DEL CONVENIO
+            </th>
+        </tr>
+
+        <tr class="active">
+            <th>
+                No. Convenio
+            </th>
+            <th>
+                Nombre Convenio
+            </th>
+            <th>
+                No. Identificaci&oacute;n
+            </th>
+            <th>
+                Fecha Creaci&oacute;n
+            </th>
+            <th>
+                Tipo
+            </th>
+            <th>
+                Cuenta Recaudadora
+            </th>
+            <th>
+                Cuenta de Espera
+            </th>
+            <th>
+                Valida Base de Datos
+            </th>
+            <th>
+                Archivo de Carga
+            </th>
+            <th>
+                Periodicidad
+            </th>
+            <th>
+                Tipo Captura
+            </th>
+            <th>
+                C&oacute;digo EAN
+            </th>
+            <th>
+                Canales Activos
+            </th>
+            <th>
+                Referencia 1
+            </th>
+            <th>
+                Longitud 1
+            </th>
+            <th>
+                Referencia 2
+            </th>
+            <th>
+                Longitud 2
+            </th>
+            <th>
+                Referencia 3
+            </th>
+            <th>
+                Longitud 3
+            </th>
+            <th>
+                Referencia 4
+            </th>
+            <th>
+                Longitud 4
+            </th>
+            <th>
+                Referencia 5
+            </th>
+            <th>
+                Longitud 5
+            </th>
+            <th>
+                Referencia 6
+            </th>
+            <th>
+                Longitud 6
+            </th>
+            <th>
+                Posici&oacute;n de Salida
+            </th>
+            <th>
+                Archivo de Salida
+            </th>
+            <th>
+                Periodicidad de la Salida
+            </th>
+            <th>
+                Tipo de Entrega
+            </th>
+        </tr>
+
+        <tr ng-repeat="data in auxData.result">
+           <td>
+               {{data.agreementCode}}
+           </td>
+            <td>
+                {{data.agreementName}}
+            </td>
+            <td>
+                {{data.idNum}}
+            </td>
+            <td>
+                {{data.creationDate}}
+            </td>
+            <td>
+                {{data.agreementType}}
+            </td>
+            <td>
+                {{data.collectAccount}}
+            </td>
+            <td>
+                {{data.standbyAccount}}
+            </td>
+            <td>
+                {{data.validateDB}}
+            </td>
+            <td>
+                {{data.loadFile}}
+            </td>
+            <td>
+                {{data.frequency}}
+            </td>
+            <td>
+                {{data.captureType}}
+            </td>
+            <td>
+                {{data.useEANcode}}
+            </td>
+            <td>
+                {{data.activeChannels}}
+            </td>
+            <td>
+                {{data.infoReferences[0].reference}}
+            </td>
+            <td>
+                {{data.infoReferences[0].length}}
+            </td>
+            <td>
+                {{data.infoReferences[1].reference}}
+            </td>
+            <td>
+                {{data.infoReferences[1].length}}
+            </td>
+            <td>
+                {{data.infoReferences[2].reference}}
+            </td>
+            <td>
+                {{data.infoReferences[2].length}}
+            </td>
+            <td>
+                {{data.infoReferences[3].reference}}
+            </td>
+            <td>
+                {{data.infoReferences[3].length}}
+            </td>
+            <td>
+                {{data.infoReferences[4].reference}}
+            </td>
+            <td>
+                {{data.infoReferences[4].length}}
+            </td>
+            <td>
+                {{data.infoReferences[5].reference}}
+            </td>
+            <td>
+                {{data.infoReferences[5].length}}
+            </td>
+            <td>
+                {{data.exitPosition}}
+            </td>
+            <td>
+                {{data.outputFile}}
+            </td>
+            <td>
+                {{data.outputFrequency}}
+            </td>
+            <td>
+                {{data.deliveryType}}
+            </td>
+        </tr>
+
+    </table>
+</div>

@@ -1,0 +1,21 @@
+<form ng-submit="saveChCallCenter(chCallCenter)" ng-controller="RequestAgreementCtrl">
+    <div class="form-group row">
+        <label class="col-md-3 padding-label">
+            Convenio requiere canal Call Center:
+        </label>
+        <div class="col-md-2" style="padding-top: 5px;">
+            <label class="radio-inline">
+                <input type="radio" ng-model="chCallCenter.required" ng-value=true>
+                Si
+            </label>
+            <label class="radio-inline">
+                <input type="radio" ng-model="chCallCenter.required" ng-value=false>
+                No
+            </label>
+        </div>
+    </div>
+
+    <div class="center-block row" style="width: 20%" >
+        <button class="btn btn-primary col-xs-12" type="submit">Guardar</button>
+    </div>
+</form>

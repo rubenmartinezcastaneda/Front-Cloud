@@ -1,0 +1,73 @@
+<div ng-include="'view/main_header.html'" style="padding-bottom: 1%;"></div> <div ng-controller="ApplicationController" >
+    <div class="row affix-row" >
+        <div class="col-sm-3 col-md-2 affix-sidebar" id="menu">
+            <div ng-include="'view/menu.html'"></div>
+        </div>
+        <div class="col-sm-9 col-md-10 affix-content" ng-controller="ProfileManagerCtrl">
+
+            <div class="row">
+                <div class="col-md-7">
+                    <h3 style="margin-left: 2%;margin-bottom: 3%; margin-top: 0;">Alta de Perfiles</h3>
+                </div>
+                <div class="col-md-5" >
+                    <form ng-submit="createProfile()">
+                        <div class="form-group row">
+                            <label class="col-md-3 padding-label">Nuevo perfil</label>
+                            <div class="col-md-5" style="margin-bottom: 1%;">
+                                <input type="text" class="form-control" ng-model="auxData.newProfileName">
+                            </div>
+                            <button class="btn btn-primary col-md-2 col-xs-12 " type="submit" style="margin-bottom: 5px;">Crear</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="row">
+                <form ng-submit="saveProfile()" style="margin: 5%; margin-top: 0px;">
+                    <div class="form-group row">
+                        <label class="col-md-2 padding-label">Seleccionar perfil</label>
+                        <div class="col-md-3">
+                            <select class="form-control" ng-model="auxData.selectAddfaculties" required ng-change="selectProfile()">
+                                <option value=""></option>
+                                <option ng-repeat="data in auxData.listProfiles" value="{{data.idProfile}}">{{data.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-md-5">
+                            <select multiple size="10" class="form-control" ng-model="auxData.selAvailableFac">
+                                <option ng-repeat="data in auxData.profile.facAvailable" value="{{data.idFaculty}}">{{data.name}}</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-1">
+                            <div class="row hidden-sm hidden-xs" style="margin-top: 92%;">
+                            </div>
+                            <div class="row">
+                                <button class="btn btn-primary col-xs-12 " type="button" ng-click="addFaculties()" style="margin-top: 1%;margin-bottom: 2%;">Agregar <span class="glyphicon glyphicon-forward" /></button>
+                            </div>
+                            <div class="row">
+                                <button class="btn btn-primary col-xs-12 " type="button" ng-click="removeFaculties()" style="margin-bottom: 2%;"><span class="glyphicon glyphicon-backward" /> Quitar</button>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-5">
+                            <select multiple size="10" class="form-control" ng-model="auxData.remSelectedFac">
+                                <option ng-repeat="data in auxData.profile.faculties" value="{{data.idFaculty}}">{{data.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row center-block" style="width: 40%; float: right">
+                        <button class="btn btn-primary col-md-5 col-xs-12 " type="submit" style="margin-bottom: 5px;">Aceptar</button>
+                        <button class="btn btn-primary col-md-offset-2 col-md-5 col-xs-12 " type="button" style="margin-bottom: 5px;" ng-click="backMain()">Volver</button>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

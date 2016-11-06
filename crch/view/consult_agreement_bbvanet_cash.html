@@ -1,0 +1,159 @@
+<form >
+    <div class="form-group row">
+        <label class="col-md-2 padding-label">Acci&oacute;n</label>
+        <div class="col-md-3" style="padding-top: 5px;">
+            <select class="form-control" ng-model="chBBVNET_CASH.action"  >
+                <option value="I" ng-if="chBBVNET_CASH.action == 'I'">Creaci&oacute;n Convenios Nuevo BBVA Net</option>
+                <option value="U" ng-if="chBBVNET_CASH.action == 'U'">Modificaci&oacute;n</option>
+                <option value="D" ng-if="chBBVNET_CASH.action == 'D'">Cancelaci&oacute;n</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-md-2 padding-label">
+            Categor&iacute;a
+        </label>
+        <div class="col-md-3" style="padding-top: 5px;">
+            <select class="form-control" ng-model="chBBVNET_CASH.category"  >
+                <option value="001" ng-if="chBBVNET_CASH.category == '001'">Servicios P&uacute;blicos</option>
+                <option value="002" ng-if="chBBVNET_CASH.category == '002'">Telefon&iacute;a Celular</option>
+                <option value="003" ng-if="chBBVNET_CASH.category == '003'">TV Satelital y Cable</option>
+                <option value="004" ng-if="chBBVNET_CASH.category == '004'">Comercializaci&oacute;n de productos</option>
+                <option value="005" ng-if="chBBVNET_CASH.category == '005'">Seguros</option>
+                <option value="006" ng-if="chBBVNET_CASH.category == '006'">Comercializaci&oacute;n de Servicios</option>
+                <option value="007" ng-if="chBBVNET_CASH.category == '007'">Pensiones, Cesant&iacute;as y ARP</option>
+                <option value="008" ng-if="chBBVNET_CASH.category == '008'">Fiduciarias</option>
+                <option value="009" ng-if="chBBVNET_CASH.category == '009'">Fondos de Empleados</option>
+                <option value="010" ng-if="chBBVNET_CASH.category == '010'">Impuestos</option>
+                <option value="011" ng-if="chBBVNET_CASH.category == '011'">Otros Pagos</option>
+                <option value="012" ng-if="chBBVNET_CASH.category == '012'">Salud</option>
+                <option value="013" ng-if="chBBVNET_CASH.category == '013'">Educaci&oacute;n</option>
+            </select>
+        </div>
+
+        <label class="col-md-2 col-md-offset-1 padding-label">
+            Subcategor&iacute;a
+        </label>
+
+        <div class="col-md-3" style="padding-top: 5px;">
+            <select class="form-control" ng-model="chBBVNET_CASH.subcategory"  >
+                <option value="001" ng-if="chBBVNET_CASH.subcategory == '001'">Bogot&aacute;</option>
+                <option value="002" ng-if="chBBVNET_CASH.subcategory == '001'">Medell&iacute;n</option>
+                <option value="003" ng-if="chBBVNET_CASH.subcategory == '001'">Cali</option>
+                <option value="004" ng-if="chBBVNET_CASH.subcategory == '001'">Barranquilla</option>
+                <option value="006" ng-if="chBBVNET_CASH.subcategory == '001'">Costa Atl&aacute;ntica</option>
+                <option value="007" ng-if="chBBVNET_CASH.subcategory == '001'">Pereira</option>
+                <option value="008" ng-if="chBBVNET_CASH.subcategory == '001'">Neiva</option>
+                <option value="009" ng-if="chBBVNET_CASH.subcategory == '001'">Manizales</option>
+                <option value="010" ng-if="chBBVNET_CASH.subcategory == '001'">Bucaramanga</option>
+                <option value="011" ng-if="chBBVNET_CASH.subcategory == '001'">C&uacute;cuta</option>
+                <option value="012" ng-if="chBBVNET_CASH.subcategory == '001'">Cartagena</option>
+                <option value="013" ng-if="chBBVNET_CASH.subcategory == '001'">Facatativ&aacute;</option>
+                <option value="015" ng-if="chBBVNET_CASH.subcategory == '001'">Villavicencio</option>
+                <option value="023" ng-if="chBBVNET_CASH.subcategory == '001'">Pasto</option>
+                <option value="099" ng-if="chBBVNET_CASH.subcategory == '001'">Todo el pa&iacute;s</option>
+            </select>
+        </div>
+
+    </div>
+
+    <div class="form-group row">
+        <label class="col-md-2 padding-label">
+            Formato
+        </label>
+        <div class="col-md-3" style="padding-top: 5px;">
+            <select class="form-control" ng-model="chBBVNET_CASH.format"  >
+                <option value="01" ng-if="chBBVNET_CASH.format == '01'">
+                    Validaci&oacute;n B.D. y existe un formato con
+                    validaci&oacute;n B.D. Con valor sugerido
+                </option>
+                <option value="02" ng-if="chBBVNET_CASH.format == '02'">
+                    Validaci&oacute;n D&iacute;gito de Chequeo
+                </option>
+                <option value="03" ng-if="chBBVNET_CASH.format == '03'">
+                    Con confirmaci&oacute;n de referencia y valor
+                </option>
+                <option value="04" ng-if="chBBVNET_CASH.format == '04'">
+                    Con confirmaci&oacute;n de dos referencias y valor
+                </option>
+                <option value="05" ng-if="chBBVNET_CASH.format == '05'">
+                    Pago con validaci&oacute;n B.D. y con un dato adicional
+                </option>
+                <option value="06" ng-if="chBBVNET_CASH.format == '06'">
+                    Validaci&oacute;n de n&uacute;mero de B.D. pero no valor
+                </option>
+            </select>
+        </div>
+
+        <label class="col-md-2 col-md-offset-1 padding-label">
+            Fromato Imagen
+        </label>
+
+        <div class="col-md-3" style="padding-top: 5px;">
+            <input type='text' class="form-control" readonly ng-model="chBBVNET_CASH.imageFormat"/>
+        </div>
+
+    </div>
+
+    <div ng-repeat="data in chBBVNET_CASH.references">
+        <div class="form-group row" >
+            <div class="panel panel-default col-xs-offset-1 col-xs-10" style="padding: 0px;" >
+                <div class="panel-heading">Referencia {{$index + 1}}</div>
+                <div class="panel-body">
+                    <div class="form-group row" >
+                        <label class="col-md-2 padding-label">
+                            Descripci&oacute;n Referencia
+                        </label>
+                        <div class="col-md-3" style="padding-top: 5px;">
+                            <input type='text' class="form-control" readonly ng-model="data.description"/>
+                        </div>
+                        <label class="col-md-3 col-md-offset-1 padding-label">
+                            Alineaci&oacute;n
+                        </label>
+                        <div class="col-md-3">
+                            <select class="form-control" ng-model="data.align"  >
+                                <option value="RIGHT" ng-if="data.align == 'RIGHT'">A la derecha</option>
+                                <option value="LEFT" ng-if="data.align == 'LEFT'">A la izquierda</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row" >
+                        <label class="col-md-2 padding-label">
+                            Car&aacute;cter de Relleno
+                        </label>
+                        <div class="col-md-3" style="padding-top: 5px;">
+                            <select class="form-control" ng-model="data.fillerChar"  >
+                                <option value="ZEROS" ng-if="data.fillerChar == 'ZEROS'">Ceros</option>
+                                <option value="SPACES" ng-if="data.fillerChar == 'SPACES'">Espacios</option>
+                            </select>
+                        </div>
+                        <label class="col-md-3 col-md-offset-1 padding-label">
+                            Tipo de dato
+                        </label>
+                        <div class="col-md-3">
+                            <select class="form-control" ng-model="data.type"  >
+                                <option value="NUM" ng-if="data.type == 'NUM'">Num&eacute;rico</option>
+                                <option value="ALFNUM" ng-if="data.type == 'ALFNUM'">Alfanum&eacute;rico</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="form-group row">
+        <span class="label label-primary center-block" style="margin: 1%;font-size: 100%;">Anexos o Im&aacute;genes</span>
+    </div>
+
+    </div>
+        <div class="panel panel-default col-xs-offset-1 col-xs-10" style="padding: 0px; margin-bottom: 1%;" ng-if="chBBVNET_CASH.BBVAnetCashAttachments.length > 0">
+            <div class="panel-heading" >Adjuntos:</div>
+            <ul class="list-group ">
+                <li class="list-group-item" ng-repeat="data in chBBVNET_CASH.BBVAnetCashAttachments">{{data.file_res.name}}</li>
+            </ul>
+        </div>
+</form>

@@ -1,0 +1,149 @@
+<form>
+    <div class="form-group row">
+        <label class="col-md-2 padding-label" >Generaci&oacute;n de Archivo</label>
+        <div class="col-md-3" style="padding-top: 5px;" >
+            <label class="radio-inline">
+                <input type="radio" ng-model="oFile.fileGeneration" ng-value=true disabled>
+                Si
+            </label>
+            <label class="radio-inline">
+                <input type="radio" ng-model="oFile.fileGeneration" ng-value=false disabled>
+                No
+            </label>
+        </div>
+
+        <label class="col-md-3 col-md-offset-1 padding-label">
+            Tipo Archivo Salida
+        </label>
+        <div class="col-md-3">
+            <select class="form-control" ng-model="oFile.outputFileType" >
+                <option value="01" ng-if="oFile.outputFileType == '01'">ESTANDAR BBVA</option>
+                <option value="02" ng-if="oFile.outputFileType == '02'">ASOBANCARIA 1998</option>
+                <option value="03" ng-if="oFile.outputFileType == '03'">ASOBANCARIA 2000</option>
+                <option value="04" ng-if="oFile.outputFileType == '04'">ASOBANCARIA 2001</option>
+                <option value="09" ng-if="oFile.outputFileType == '09'">ASOBANCARIA 2011</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-md-2 padding-label" >Tipo de Formato</label>
+        <div class="col-md-3">
+            <select class="form-control" ng-model="oFile.formatType" >
+                <option value="01" ng-if="oFile.formatType == '01'">ERNAL</option>
+                <option value="02" ng-if="oFile.formatType == '02'">ERECA</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-md-2 padding-label" >Periodicidad Informe</label>
+        <div class="col-md-3">
+            <select class="form-control" ng-model="oFile.reportingRate" required>
+                <option value="Diario" ng-if="oFile.reportingRate == 'Diario'">Diario</option>
+                <option value="Mensual" ng-if="oFile.reportingRate == 'Mensual'">Mensual</option>
+                <option value="Ambos" ng-if="oFile.reportingRate == 'Ambos'">Ambos</option>
+                <option value="Ninguno" ng-if="oFile.reportingRate == 'Ninguno'">Ninguno</option>
+            </select>
+        </div>
+
+        <label class="col-md-3 col-md-offset-1 padding-label">
+            Periodicidad Archivo
+        </label>
+        <div class="col-md-3">
+            <select class="form-control" ng-model="oFile.periodicityFile" required>
+                <option value="I" ng-if="oFile.periodicityFile == 'I'">Incremental (Cada Hora)</option>
+                <option value="A" ng-if="oFile.periodicityFile == 'A'">Acumulado (Cada Hora)</option>
+                <option value="D" ng-if="oFile.periodicityFile == 'D'">Diario (Automatico)</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-md-2 padding-label" >Destino</label>
+        <div class="col-md-3">
+            <select class="form-control" ng-model="oFile.destination" required>
+                <option value="FTP" ng-if="oFile.destination == 'FTP'">FTP</option>
+                <option value="CASH" ng-if="oFile.destination == 'CASH'">CASH</option>
+            </select>
+        </div>
+
+        <label class="col-md-3 col-md-offset-1 padding-label" ng-if="type == 'R'">
+            Transferencia Parcial
+        </label>
+        <div class="col-md-3" ng-if="type == 'R'">
+            <select class="form-control" ng-model="oFile.periodicityFile" required >
+                <option value="A" ng-if="oFile.periodicityFile == 'A'">Acumulado</option>
+                <option value="I" ng-if="oFile.periodicityFile == 'I'">Incremental</option>
+                <option value="P" ng-if="oFile.periodicityFile == 'P'">Parcial</option>
+                <option value="T" ng-if="oFile.periodicityFile == 'T'">Total</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-md-2 padding-label">Convenio Especial</label>
+        <div class="col-md-2" style="padding-top: 5px;">
+            <label class="radio-inline">
+                <input type="radio" ng-model="oFile.specialAgreement" ng-value=true disabled>
+                Si
+            </label>
+            <label class="radio-inline">
+                <input type="radio" ng-model="oFile.specialAgreement" ng-value=false disabled>
+                No
+            </label>
+        </div>
+
+        <label class="col-md-2 padding-label">Informe por Canal</label>
+        <div class="col-md-2" style="padding-top: 5px;">
+            <input type='text' class="form-control" readonly ng-model="oFile.channelReport"/>
+        </div>
+
+        <label class="col-md-2 padding-label">Periodicidad M&iacute;n</label>
+        <div class="col-md-2" style="padding-top: 5px;">
+            <input type='text' class="form-control" readonly ng-model="oFile.minPeriodicity"/>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-md-2 padding-label">Env&iacute;o archivo autom&aacute;tico</label>
+        <div class="col-md-2" style="padding-top: 5px;">
+            <label class="radio-inline">
+                <input type="radio" ng-model="oFile.autoSendFile" ng-value=true disabled>
+                Si
+            </label>
+            <label class="radio-inline">
+                <input type="radio" ng-model="oFile.autoSendFile" ng-value=false disabled>
+                No
+            </label>
+        </div>
+
+        <label class="col-md-2 padding-label">Posici&oacute;n Entrada BD</label>
+        <div class="col-md-2" style="padding-top: 5px;">
+            <label class="radio-inline">
+                <input type="radio" ng-model="oFile.hasDBEntryPosition" ng-value=true disabled>
+                Si
+            </label>
+            <label class="radio-inline">
+                <input type="radio" ng-model="oFile.hasDBEntryPosition" ng-value=false disabled>
+                No
+            </label>
+        </div>
+
+        <label class="col-md-2 padding-label">Longitud</label>
+        <div class="col-md-2" style="padding-top: 5px;">
+            <div class="col-xs-5">
+                <input type='text' class="form-control" readonly ng-model="oFile.longitudeInit"/>
+            </div>
+            <div class="col-xs-1" style="margin: 0px; padding: 0px;">
+                <p style="font-size: 25px; text-align: center;">
+                    /
+                </p>
+            </div>
+            <div class="col-xs-5">
+                <input type='text' class="form-control" readonly ng-model="oFile.longitudeEnd"/>
+            </div>
+
+        </div>
+    </div>
+</form>

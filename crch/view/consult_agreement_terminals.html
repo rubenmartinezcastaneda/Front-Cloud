@@ -1,0 +1,45 @@
+<form>
+    <div class="form-group row">
+        <label class="col-md-2 padding-label">Cobertura del Servicio</label>
+        <div class="col-md-3" style="padding-top: 5px;">
+            <select class="form-control" ng-model="chTerminals.type" >
+                <option value="NAL" ng-if="chTerminals.type == 'NAL'">Nacional</option>
+                <option value="OFI" ng-if="chTerminals.type == 'OFI'">Oficina</option>
+                <option value="CSR" ng-if="chTerminals.type == 'CSR'">Centro de Servicios</option>
+                <option value="OCS" ng-if="chTerminals.type == 'OCS'">Oficina y Centro de servicios</option>
+            </select>
+        </div>
+
+        <label class="col-md-2 padding-label">
+            <input type="checkbox" ng-model="chTerminals.allOffices"> Todas las Oficinas
+        </label>
+    </div>
+
+    <div ng-repeat="data in chTerminals.terminals" ng-if="!chTerminals.allOffices">
+        <div class="form-group row" >
+            <label class="col-md-2 padding-label">C&oacute;digo Centro de Servicios</label>
+            <div class="col-md-3" style="padding-top: 5px;">
+                <input type='text' class="form-control" readonly ng-model="data.serviceCenterCode"/>
+            </div>
+            <label class="col-md-3 col-md-offset-1 padding-label">
+                C&oacute;digo Oficina
+            </label>
+            <div class="col-md-3">
+                <input type='text' class="form-control" readonly ng-model="data.officeCode"/>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="form-group row">
+        <span class="label label-primary center-block" style="margin: 1%;font-size: 100%;">Anexos o Im&aacute;genes</span>
+    </div>
+
+        <div class="panel panel-default col-xs-offset-1 col-xs-10" style="padding: 0px; margin-bottom: 1%;" ng-if="chTerminals.terminalAttachments.length > 0">
+            <div class="panel-heading" >Adjuntos:</div>
+            <ul class="list-group ">
+                <li class="list-group-item" ng-repeat="data in chTerminals.terminalAttachments">{{data.file_res.name}} </li>
+            </ul>
+        </div>
+
+</form>

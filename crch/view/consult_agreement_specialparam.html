@@ -1,0 +1,168 @@
+<form>
+    <div class="form-group row">
+        <label class="col-md-2 padding-label">
+            Valor Adicional
+        </label>
+        <div class="col-md-3">
+            <select class="form-control" ng-model="specialparam.additionalValue">
+                <option value="F" ng-if="specialparam.additionalValue == 'F'">Fijo</option>
+                <option value="V" ng-if="specialparam.additionalValue == 'V'">Variable</option>
+                <option value="S" ng-if="specialparam.additionalValue == 'S'">Sin Valor A.</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-md-2 padding-label" >Autoadhesivo</label>
+        <div class="col-md-3">
+            <select class="form-control" ng-model="specialparam.autoadhesive">
+                <option value="F" ng-if="specialparam.autoadhesive == 'F'">F&iacute;sico</option>
+                <option value="A" ng-if="specialparam.autoadhesive == 'A'">Autom&aacute;tico</option>
+                <option value="N" ng-if="specialparam.autoadhesive == 'N'">No Aplica</option>
+            </select>
+        </div>
+
+        <label class="col-md-3 col-md-offset-1 padding-label">
+            Tamaño Formato Autoadhesivo
+        </label>
+        <div class="col-md-3">
+            <select class="form-control" ng-model="specialparam.formatAutoadhesive">
+                <option value="C" ng-if="specialparam.formatAutoadhesive == 'C'">Carta</option>
+                <option value="M" ng-if="specialparam.formatAutoadhesive == 'M'">Media Carta</option>
+                <option value="O" ng-if="specialparam.formatAutoadhesive == 'O'">Oficio</option>
+                <option value="N" ng-if="specialparam.formatAutoadhesive == 'N'">No Aplica</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-md-2 padding-label" >Reciprocidad</label>
+        <div class="col-md-2">
+            <label class="radio-inline">
+                <input type="radio" ng-model="specialparam.reciprocity" ng-value=true disabled>
+                Si
+            </label>
+            <label class="radio-inline">
+                <input type="radio" ng-model="specialparam.reciprocity" ng-value=false disabled>
+                No
+            </label>
+        </div>
+
+        <label class="col-md-2 padding-label">
+            Tipo de Derrama
+        </label>
+        <div class="col-md-2">
+            <select class="form-control" ng-model="specialparam.contributionType" >
+                <option value="1" ng-if="specialparam.contributionType == '1'">Cuenta Contable</option>
+                <option value="2" ng-if="specialparam.contributionType == '2'">Cuenta Personal</option>
+            </select>
+        </div>
+
+        <label class="col-md-2 padding-label" >Dispersi&oacute;n</label>
+        <div class="col-md-2">
+            <label class="radio-inline">
+                <input type="radio" ng-model="specialparam.dispersion" ng-value=true disabled>
+                Si
+            </label>
+            <label class="radio-inline">
+                <input type="radio" ng-model="specialparam.dispersion" ng-value=false disabled>
+                No
+            </label>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <span class="label label-primary center-block" style="margin: 1%;font-size: 100%;">Tipo de D&iacute;as</span>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-md-2 padding-label" >Dpto</label>
+        <div class="col-md-2">
+            <select class="form-control" ng-model="specialparam.dayTypeDpt">
+                <option value="C" ng-if="specialparam.dayTypeDpt == 'C'">Calendario</option>
+                <option value="H" ng-if="specialparam.dayTypeDpt == 'H'">H&aacute;bil</option>
+                <option value="F" ng-if="specialparam.dayTypeDpt == 'F'">Fijo</option>
+            </select>
+        </div>
+
+        <label class="col-md-2 padding-label">
+            Mcipio
+        </label>
+        <div class="col-md-2">
+            <select class="form-control" ng-model="specialparam.dayTypeMncp" >
+                <option value="C" ng-if="specialparam.dayTypeMncp == 'C'">Calendario</option>
+                <option value="H" ng-if="specialparam.dayTypeMncp == 'H'">H&aacute;bil</option>
+                <option value="F" ng-if="specialparam.dayTypeMncp == 'F'">Fijo</option>
+            </select>
+        </div>
+
+        <label class="col-md-2 padding-label">
+            Conv. Asociado
+        </label>
+        <div class="col-md-2">
+            <select class="form-control" ng-model="specialparam.dayTypeAssociatedAgreement" >
+                <option value="C" ng-if="specialparam.dayTypeAssociatedAgreement == 'C'">Calendario</option>
+                <option value="H" ng-if="specialparam.dayTypeAssociatedAgreement == 'H'">H&aacute;bil</option>
+                <option value="F" ng-if="specialparam.dayTypeAssociatedAgreement == 'F'">Fijo</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <span class="label label-primary center-block" style="margin: 1%;font-size: 100%;">Porcentajes de Dispersi&oacute;n</span>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-md-2 padding-label" >Dpto</label>
+        <div class="col-md-2">
+            <input type='text' class="form-control" readonly ng-model="specialparam.percentDpt"/>
+        </div>
+
+        <label class="col-md-2 padding-label">
+            Mcipio
+        </label>
+        <div class="col-md-2">
+            <input type='text' class="form-control" readonly ng-model="specialparam.percentMncp"/>
+        </div>
+
+        <label class="col-md-2 padding-label">
+            Conv. Asociado
+        </label>
+        <div class="col-md-2">
+            <input type='text' class="form-control" readonly ng-model="specialparam.percentAssociatedAgreement"/>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <span class="label label-primary center-block" style="margin: 1%;font-size: 100%;">Cuentas de Espera</span>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-md-2 padding-label" >Dpto</label>
+        <div class="col-md-2">
+            <label class="radio-inline">
+                <input type="radio" ng-model="specialparam.hasStandbyAccountDpt" ng-value=true disabled>
+                Si
+            </label>
+            <label class="radio-inline">
+                <input type="radio" ng-model="specialparam.hasStandbyAccountDpt" ng-value=false disabled>
+                No
+            </label>
+        </div>
+
+        <label class="col-md-2 padding-label">
+            Mcipio
+        </label>
+        <div class="col-md-2">
+            <label class="radio-inline">
+                <input type="radio" ng-model="specialparam.hasStandbyAccountMncp" ng-value=true disabled>
+                Si
+            </label>
+            <label class="radio-inline">
+                <input type="radio" ng-model="specialparam.hasStandbyAccountMncp" ng-value=false disabled>
+                No
+            </label>
+        </div>
+    </div>
+
+</form>

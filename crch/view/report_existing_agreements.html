@@ -1,0 +1,150 @@
+<div class="form-group row">
+   <span class="label label-primary center-block" style="margin: 1%;font-size: 100%;">
+       Informe de Convenios Existentes
+   </span>
+</div>
+
+<div class="form-group row">
+    <label class="col-md-2 padding-label" >
+        N&uacute;mero de Convenio
+    </label>
+    <div class="col-md-2">
+        <input type='text' class="form-control" maxlength="20" required ng-model="auxData.filter.agreementNumber"/>
+    </div>
+
+    <label class="col-md-2 padding-label">
+        N&uacute;mero de Solicitud
+    </label>
+    <div class="col-md-2">
+        <input type='text' class="form-control" maxlength="20" required ng-model="auxData.filter.requestNumber"/>
+    </div>
+
+    <label class="col-md-2 padding-label" >
+        N&uacute;mero de Identificaci&oacute;n
+    </label>
+    <div class="col-md-2">
+        <input type='text' class="form-control" maxlength="20" required ng-model="auxData.filter.idNumber"/>
+    </div>
+</div>
+
+<div class="form-group row">
+    <label class="col-md-2 padding-label">Fecha Inicio</label>
+    <div class="col-md-4 ">
+        <div class='input-group date'>
+            <input type='text' class="form-control" ng-model="auxData.filter.startDate" required datetime-picker date-format="dd/MM/yyyy" date-only />
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+        </div>
+    </div>
+
+    <label class="col-md-2 padding-label">Fecha Fin</label>
+    <div class="col-md-4 ">
+        <div class='input-group date'>
+            <input type='text' class="form-control" ng-model="auxData.filter.endDate" required datetime-picker date-format="dd/MM/yyyy" date-only />
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+        </div>
+    </div>
+</div>
+
+<div class="form-group row center-block" style="width: 40%; margin-left: 60%">
+    <button class="btn btn-primary col-md-5 col-xs-12 " type="button" style="margin-bottom: 5px;" ng-click="genReport(2)">Generar Archivo</button>
+    <button class="btn btn-primary col-md-offset-2 col-md-5 col-xs-12 " type="button" style="margin-bottom: 5px;" ng-click="cleanAux()">Limpiar</button>
+</div>
+
+<div ng-if="auxData.result.length > 0"  class="form-group row center-block table-responsive">
+    <table class="table table-bordered">
+        <tr class="active">
+            <th colspan="13">
+                INFORME DE CONVENIOS EXISTENTES
+            </th>
+        </tr>
+
+        <tr class="active">
+            <th>
+                Solicitado por
+            </th>
+            <th>
+                Fecha solicitud
+            </th>
+            <th>
+                No. de Convenio
+            </th>
+            <th>
+                Nombre Convenio
+            </th>
+            <th>
+                No. Identificaci&oacute;n
+            </th>
+            <th>
+                Banca
+            </th>
+            <th>
+                Oficina
+            </th>
+            <th>
+                Gestor
+            </th>
+            <th>
+                Cuenta Recaudadora
+            </th>
+            <th>
+                Tipo
+            </th>
+            <th>
+                Estado del convenio
+            </th>
+            <th>
+                Fecha de &uacute;ltima modificaci&oacute;n
+            </th>
+            <th>
+                No. Solicitud de Modificaci&oacute;n
+            </th>
+        </tr>
+
+        <tr ng-repeat="data in auxData.result">
+           <td>
+               {{data.requesterCode}}
+           </td>
+            <td>
+                {{data.requestDate}}
+            </td>
+            <td>
+                {{data.agreementCode}}
+            </td>
+            <td>
+                {{data.agreementName}}
+            </td>
+            <td>
+                {{data.idNum}}
+            </td>
+            <td>
+                {{data.banking}}
+            </td>
+            <td>
+                {{data.office}}
+            </td>
+            <td>
+                {{data.manager}}
+            </td>
+            <td>
+                {{data.collectAccount}}
+            </td>
+            <td>
+                {{data.agreementType}}
+            </td>
+
+            <td>
+                {{data.agreementStatus}}
+            </td>
+            <td>
+                {{data.lastModificationDate}}
+            </td>
+            <td>
+                {{data.requestIdLastModification}}
+            </td>
+        </tr>
+    </table>
+</div>

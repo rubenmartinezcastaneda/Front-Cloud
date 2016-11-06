@@ -1,0 +1,63 @@
+<div ng-include="'view/main_header.html'" style="padding-bottom: 1%;"></div> <div ng-controller="ApplicationController" >
+    <div class="row affix-row" >
+        <div class="col-sm-3 col-md-2 affix-sidebar" id="menu">
+            <div ng-include="'view/menu.html'"></div>
+        </div>
+        <div class="col-sm-9 col-md-9 affix-content">
+            <ol class="breadcrumb">
+                <li>Administrador de Informes</li>
+                <li class="active">Generar Informes</li>
+            </ol>
+
+            <div class="row">
+                <div class="col-md-8">
+                    <h3 style="margin-left: 2%;margin-bottom: 3%; margin-top: 0;">Informes de Contrataci&oacute;n de Convenios</h3>
+                </div>
+            </div>
+
+            <div class="row">
+               <span class="label label-primary center-block" style="margin: 1%;font-size: 100%;">
+                    CONSULTE LOS INFORMES DISPONIBLES
+               </span>
+            </div>
+
+
+            <div class="row">
+                <form ng-controller="ReportManagerCtrl" class="center-block" style="width: 95%;">
+                    <div class="form-group row" style="margin-bottom: 0px;">
+                        <label class="col-md-2 padding-label">Seleccione el informe</label>
+                        <div class="col-md-4 col-xs-12 selectContainer" style="margin-bottom: 5px;">
+                            <select class="form-control" ng-model="auxData.report.type" ng-change="cleanAux()">
+                                <option value=""></option>
+                                <option value="1" ng-if="type == 'R'">Informe Estad&iacute;stico de Convenios</option>
+                                <option value="2" ng-if="type == 'R'">Informe de Convenios Existentes</option>
+                                <option value="3" ng-if="type == 'R'">Informe de Parametr&iacute;a del Convenio</option>
+                                <option value="4" ng-if="type == 'R'">Informe de Solicitudes</option>
+                                <option value="5">Informe de Auditor&iacute;a</option>
+                                <option value="6" ng-if="type == 'R'">Informe de Tarjetas de Recaudo</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div ng-include="'view/report_agreement_statistical.html'" ng-if="auxData.report.type == '1' && type == 'R'" class="row center-block"></div>
+                    <div ng-include="'view/report_existing_agreements.html'" ng-if="auxData.report.type == '2' && type == 'R'" class="row center-block"></div>
+                    <div ng-include="'view/report_agreement_param.html'" ng-if="auxData.report.type == '3' && type == 'R'" class="row center-block"></div>
+                    <div ng-include="'view/report_requests.html'" ng-if="auxData.report.type == '4' && type == 'R'" class="row center-block"></div>
+                    <div ng-include="'view/report_audit.html'" ng-if="auxData.report.type == '5'" class="row center-block"></div>
+                    <div ng-include="'view/report_collect_card.html'" ng-if="auxData.report.type == '6' && type == 'R'" class="row center-block"></div>
+
+                    <div class="form-group center-block row" style="margin-top: 1%;">
+                        <button class="btn btn-primary col-md-offset-1 col-md-2" type="button" ng-click="exportReportCSV()">Exportar a CSV <span class="glyphicon glyphicon-list-alt"></span></button>
+                        <button class="btn btn-primary col-md-offset-1 col-md-2" type="button" ng-click="exportReportExcel()">Exportar a Excel <span class="glyphicon glyphicon-list-alt"></span></button>
+                        <button class="btn btn-primary col-md-offset-1 col-md-2" type="button" ng-click="printReport()">Imprimir <span class="glyphicon glyphicon-print"></span></button>
+                        <button class="btn btn-primary col-md-offset-1 col-md-2" type="button" ng-click="goBack()">Volver</button>
+                    </div>
+
+
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+</div>

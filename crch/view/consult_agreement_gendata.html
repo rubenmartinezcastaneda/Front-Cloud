@@ -1,0 +1,339 @@
+<form>
+    <div class="form-group row">
+        <label for="typeId" class="col-md-2 padding-label">Tipo de Identificaci&oacute;n</label>
+        <div class="col-md-3">
+            <select class="form-control" id="typeId" ng-model="gendata.typeId" >
+                <option value="3" ng-if="gendata.typeId == '3'">NIT</option>
+                <option value="1" ng-if="gendata.typeId == '1'">C&eacute;dula</option>
+                <option value="2" ng-if="gendata.typeId == '2'">C&eacute;dula de Extranjer&iacute;a</option>
+            </select>
+        </div>
+
+        <label class="col-md-3 col-md-offset-1 padding-label">N&uacute;mero de Identificaci&oacute;n</label>
+        <div class="col-md-2 col-xs-10">
+            <input type="text" class="form-control" maxlength="15" readonly ng-model="gendata.numId">
+        </div>
+        <div class="col-md-1 col-xs-2">
+            <input type="text" class="form-control" maxlength="1" readonly ng-model="gendata.verDigId">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-md-2 padding-label">Tipo de Cuenta</label>
+        <div class="col-md-3">
+            <select class="form-control" ng-model="gendata.accountType" required>
+                <option value="AH" ng-if="gendata.accountType == 'AH'">Cuenta Corriente</option>
+                <option value="CC" ng-if="gendata.accountType == 'CC'">Cuenta de Ahorros</option>
+                <option value="CL" ng-if="gendata.accountType == 'CL'">Cr&eacute;dito L&iacute;quido</option>
+            </select>
+        </div>
+
+        <label class="col-md-3 col-md-offset-1 padding-label">N&uacute;mero de Cuenta</label>
+        <div class="col-md-3">
+            <input type="text" class="form-control" maxlength="20" readonly ng-model="gendata.numAccount">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-md-2 padding-label">Tipo de Convenio</label>
+        <div class="col-md-3">
+            <select class="form-control" ng-model="gendata.agreementType" required>
+                <option value="01" ng-if="gendata.agreementType == '01'">Recaudo Nacional</option>
+                <option value="02" ng-if="gendata.agreementType == '02'">Servicios P&uacute;blicos</option>
+                <option value="03" ng-if="gendata.agreementType == '03'">Impuestos Distritales</option>
+                <option value="05" ng-if="gendata.agreementType == '05'">Impuestos Nuevos</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-md-2 padding-label">Gestor</label>
+        <div class="col-md-3">
+            <input type="text" maxlength="40" class="form-control" readonly ng-model="gendata.manager">
+        </div>
+        <label class="col-md-2 padding-label">Email Gestor</label>
+        <div class="col-md-2">
+            <input type="text" maxlength="40" class="form-control" readonly ng-model="gendata.managerMail">
+        </div>
+        <label class="col-md-1 padding-label">Banca</label>
+        <div class="col-md-2">
+            <input type="text" class="form-control"  maxlength="4" readonly required ng-model="gendata.managerBank">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-md-2 padding-label">N&uacute;mero de Convenio</label>
+        <div class="col-md-3">
+            <input type="text" class="form-control" maxlength="7" readonly ng-model="gendata.agreementNumber" >
+        </div>
+        <label class="col-md-3 col-md-offset-1 padding-label">Nombre del Convenio</label>
+        <div class="col-md-3">
+            <input type="text" class="form-control" maxlength="60" readonly ng-model="gendata.agreementName">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-md-2 padding-label">Descripci&oacute;n</label>
+        <div class="col-md-10">
+            <input type="text" class="form-control" maxlength="20" readonly ng-model="gendata.description">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-md-2 padding-label">Fecha de Vencimiento</label>
+        <div class="col-md-4 ">
+            <div class='input-group date' id='datetimepicker1'>
+                <input type='text' class="form-control" ng-model="gendata.expiredDate" readonly />
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="panel panel-default col-xs-offset-1 col-xs-10" style="padding: 0px;">
+            <div class="panel-heading">Formas de Pago Seleccionadas:</div>
+            <ul class="list-group ">
+                <li class="list-group-item" ng-repeat="paymeF in gendata.paymentForm">{{paymeF.name}} </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-md-2 padding-label">Forma de Abono del Extracto</label>
+        <div class="col-md-3">
+            <select class="form-control" ng-model="gendata.paymentFormExtract" required>
+                <option value="DC" ng-if="gendata.paymentFormExtract == 'DC'">Detalle en Cuenta</option>
+                <option value="AD" ng-if="gendata.paymentFormExtract == 'AD'">Abono Diario (Cta. de Espera)</option>
+            </select>
+        </div>
+
+        <label class="col-md-3 col-md-offset-1 padding-label">N&uacute;mero de Cuenta de Espera</label>
+        <div class="col-md-3">
+            <input type="text" class="form-control" maxlength="20" readonly ng-model="gendata.numStandbyAccount">
+        </div>
+    </div>
+
+    <div class="form-group row" ng-if="gendata.paymentFormExtract == 'AD'">
+        <label class="col-md-2 padding-label">Tipo de Recaudo</label>
+        <div class="col-md-2">
+            <input type="text" class="form-control" maxlength="3" readonly ng-model="gendata.diaryPayment.collectType">
+        </div>
+
+        <label class="col-md-2 padding-label">Clase de Recaudo</label>
+        <div class="col-md-2">
+            <input type="text" class="form-control" maxlength="3" readonly ng-model="gendata.diaryPayment.collectClass">
+        </div>
+
+        <label class="col-md-2 padding-label">Cuenta de Espera</label>
+        <div class="col-md-2">
+            <input type="text" class="form-control" maxlength="1" readonly ng-model="gendata.diaryPayment.standbyAccount">
+        </div>
+
+    </div>
+
+    <div class="form-group row" ng-if="gendata.paymentFormExtract == 'AD'">
+
+        <label class="col-md-2 padding-label">Oficina Recaudadora</label>
+        <div class="col-md-2">
+            <input type="text" class="form-control" maxlength="4" readonly ng-model="gendata.diaryPayment.officeCollect">
+        </div>
+
+        <label class="col-md-2 padding-label">No Cuenta de Espera</label>
+        <div class="col-md-2">
+            <input type="text" class="form-control" maxlength="8" readonly ng-model="gendata.diaryPayment.numStandbyAccount">
+        </div>
+
+        <label class="col-md-2 padding-label">Impto. Cuenta de Espera OF. 0044</label>
+        <div class="col-md-2">
+            <input type="text" class="form-control" maxlength="20" readonly ng-model="gendata.diaryPayment.numStandbyAccount0044">
+        </div>
+
+    </div>
+
+    <div class="form-group row" ng-if="gendata.paymentFormExtract == 'AD'">
+
+        <label class="col-md-2 padding-label">Tipo de Impuesto</label>
+        <div class="col-md-2">
+            <input type="text" class="form-control" readonly ng-model="gendata.diaryPayment.taxType">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-md-2 padding-label" ng-if="type == 'R'">Inhouse</label>
+        <div class="col-md-3" style="padding-top: 5px;" ng-if="type == 'R'">
+            <label class="radio-inline">
+                <input type="radio" ng-model="gendata.inhouse" ng-value=true disabled>
+                Si
+            </label>
+            <label class="radio-inline">
+                <input type="radio" ng-model="gendata.inhouse" ng-value=false disabled>
+                No
+            </label>
+        </div>
+
+        <label class="col-md-3 col-md-offset-1 padding-label" ng-if="type == 'R'">
+            Estado Contrato
+        </label>
+        <label class="col-md-2 padding-label" ng-if="type == 'I'">
+            Estado Contrato
+        </label>
+        <div class="col-md-3">
+            <select class="form-control" ng-model="gendata.status">
+                <option value="A" ng-if="gendata.status == 'A'">Activo</option>
+                <option value="I" ng-if="gendata.status == 'I'">Inactivo</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group row" ng-if="type == 'R'">
+        <label class="col-md-2 padding-label">Activa Masiva</label>
+        <div class="col-md-2" style="padding-top: 5px;">
+            <label class="radio-inline">
+                <input type="radio" ng-model="gendata.massiveActive" ng-value=true disabled>
+                Si
+            </label>
+            <label class="radio-inline">
+                <input type="radio" ng-model="gendata.massiveActive" ng-value=false disabled>
+                No
+            </label>
+        </div>
+
+        <label class="col-md-2 padding-label">Multilote</label>
+        <div class="col-md-2" style="padding-top: 5px;">
+            <label class="radio-inline">
+                <input type="radio" ng-model="gendata.multilot" ng-value=true disabled>
+                Si
+            </label>
+            <label class="radio-inline">
+                <input type="radio" ng-model="gendata.multilot" ng-value=false disabled>
+                No
+            </label>
+        </div>
+
+        <label class="col-md-2 padding-label">Consecutivo</label>
+        <div class="col-md-2" style="padding-top: 5px;">
+            <label class="radio-inline">
+                <input type="radio" ng-model="gendata.consecutive" ng-value=true disabled>
+                Si
+            </label>
+            <label class="radio-inline">
+                <input type="radio" ng-model="gendata.consecutive" ng-value=false disabled>
+                No
+            </label>
+        </div>
+
+    </div>
+
+    <div class="form-group row" >
+        <label class="col-md-4 padding-label">Rango de Horas Inhabilitadas en Recaudo:</label>
+        <label class="col-md-2 padding-label">Hora Inicial</label>
+        <div class="col-md-2">
+            <input type='text' class="form-control" readonly ng-model="gendata.initHour" maxlength="4"/>
+        </div>
+        <label class="col-md-2 padding-label">Hora Final</label>
+        <div class="col-md-2">
+            <input type='text' class="form-control" readonly ng-model="gendata.finalHour" maxlength="4"/>
+        </div>
+    </div>
+
+    <div class="form-group row" ng-if="type == 'R'">
+        <label class="col-md-3 padding-label">Empresa Alterna</label>
+        <label class="col-md-1 padding-label">Tipo</label>
+        <div class="col-md-2">
+            <input type="text" class="form-control" readonly ng-model="gendata.alternatiEnterprise.type">
+        </div>
+        <label class="col-md-1 padding-label">C&oacute;digo</label>
+        <div class="col-md-2">
+            <input type="text" class="form-control" readonly ng-model="gendata.alternatiEnterprise.code">
+        </div>
+        <label class="col-md-1 padding-label">Clase</label>
+        <div class="col-md-2">
+            <input type="text" class="form-control" readonly ng-model="gendata.alternatiEnterprise.class">
+        </div>
+    </div>
+
+    <div class="form-group row" >
+        <label class="col-md-3 padding-label">Tr&aacute;fico de Documentos</label>
+        <div class="col-md-3" style="padding-top: 5px;">
+            <label class="radio-inline">
+                <input type="radio" ng-model="gendata.documentTraffic" ng-value=true disabled>
+                Si
+            </label>
+            <label class="radio-inline">
+                <input type="radio" ng-model="gendata.documentTraffic" ng-value=false disabled>
+                No
+            </label>
+        </div>
+
+        <label class="col-md-3 padding-label">Convenios Asociados</label>
+        <div class="col-md-3" style="padding-top: 5px;">
+            <label class="radio-inline">
+                <input type="radio" ng-model="gendata.agreementAssociate" ng-value=true disabled>
+                Si
+            </label>
+            <label class="radio-inline">
+                <input type="radio" ng-model="gendata.agreementAssociate" ng-value=false disabled>
+                No
+            </label>
+        </div>
+
+    </div>
+
+    <div class="form-group row" ng-if="gendata.agreementAssociate">
+        <div class="panel panel-default col-xs-offset-1 col-xs-10" style="padding: 0px;" ng-repeat="aAgreement in gendata.associtedAgreements">
+            <div class="panel-heading">Convenio Asociado {{$index + 1}}</div>
+            <div class="panel-body">
+                <div class="form-group row">
+                    <label class="col-md-2 padding-label">C&oacute;digo EAN</label>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control" readonly ng-model="aAgreement.ean">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-md-2 padding-label">N&uacute;mero de Convenio</label>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control" maxlength="7" readonly ng-model="aAgreement.numAgreement">
+                    </div>
+
+                    <label class="col-md-3 col-md-offset-1 padding-label">Cuenta Asociada</label>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control" readonly ng-model="aAgreement.associatedAccount">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row" ng-repeat="unifiedWS in gendata.unifiedwebServices">
+        <label class="col-md-2 padding-label">Unificaci&oacute;n Convenio Webservices</label>
+        <label class="col-md-1 padding-label">Tipo</label>
+        <div class="col-md-1">
+            <input type="text" class="form-control" readonly ng-model="unifiedWS.type">
+        </div>
+        <label class="col-md-1 padding-label">C&oacute;digo</label>
+        <div class="col-md-2">
+            <input type="text" class="form-control" readonly ng-model="unifiedWS.code">
+        </div>
+        <label class="col-md-1 padding-label">Clase</label>
+        <div class="col-md-1" style="margin-bottom: 1%;">
+            <input type="text" class="form-control" readonly ng-model="unifiedWS.class">
+        </div>
+        <!--div style="width: 80%;" class="center-block">
+            <button class="btn btn-primary col-md-offset-1 col-md-1  col-xs-12" type="button" ng-click="addAnotherUnifiedWS(auxPaymentForm)" style="margin-left: 1%; margin-bottom: 1%">A&ntilde;adir</button>
+            <button class="btn btn-primary col-md-1 col-xs-12" type="button" ng-click="removeUnifiedWS($index)" style="margin-left: 1%;  margin-bottom: 1%">Eliminar</button>
+        </div-->
+
+    </div>
+
+    <div class="form-group row" ng-if="type == 'I'">
+        <label class="col-md-3 padding-label">Cargar Archivo de Municipios</label>
+        <div class="col-md-9" style="margin-bottom: 1%;">
+            <input type="file" class="form-control" readonly ng-model="gendata.municipalityFile">
+        </div>
+
+    </div>
+</form>

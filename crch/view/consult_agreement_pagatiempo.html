@@ -1,0 +1,252 @@
+<form>
+
+    <div class="form-group row">
+        <label class="col-md-2 padding-label" >Tipo de Servicio</label>
+        <div class="col-md-2">
+            <select class="form-control" ng-model="chPagaTiempo.serviceType">
+                <option value="RC" ng-if="chPagaTiempo.serviceType == 'RC'"></option>
+            </select>
+        </div>
+
+        <label class="col-md-2 padding-label">
+            Servicio
+        </label>
+        <div class="col-md-2">
+            <input type='text' class="form-control" maxlength="2" readonly ng-model="chPagaTiempo.service"/>
+        </div>
+
+        <label class="col-md-2 padding-label" >Subservicio</label>
+        <div class="col-md-2">
+            <input type='text' class="form-control" maxlength="8" readonly ng-model="chPagaTiempo.subservice"/>
+        </div>
+    </div>
+
+
+    <div class="form-group row">
+        <label class="col-md-2 padding-label" >Estado del Servicio</label>
+        <div class="col-md-2">
+            <select class="form-control" ng-model="chPagaTiempo.serviceStatus">
+                <option value="A" ng-if="chPagaTiempo.serviceStatus == 'A'">Activo</option>
+                <option value="I" ng-if="chPagaTiempo.serviceStatus == 'I'">Inactivo</option>
+            </select>
+        </div>
+
+        <label class="col-md-2 padding-label">
+            Fecha Estado
+        </label>
+        <div class="col-md-2">
+            <div class='input-group date' id='statusDate'>
+                <input type='text' class="form-control" ng-model="chPagaTiempo.statusDate" readonly />
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+
+        <label class="col-md-2 padding-label" >Tipo Facturaci&oacute;n</label>
+        <div class="col-md-2">
+            <select class="form-control" ng-model="chPagaTiempo.facturationType">
+                <option value="PR" ng-if="chPagaTiempo.facturationType == 'PR'">Propia</option>
+                <option value="AJ" ng-if="chPagaTiempo.facturationType == 'AJ'">Ajena</option>
+            </select>
+        </div>
+    </div>
+
+
+    <div class="form-group row">
+        <label class="col-md-2 padding-label" >Periodicidad Recibo</label>
+        <div class="col-md-2">
+            <select class="form-control" ng-model="chPagaTiempo.frequencyReceipt">
+                <option value="D" ng-if="chPagaTiempo.frequencyReceipt == 'D'">Diaria</option>
+                <option value="M" ng-if="chPagaTiempo.frequencyReceipt == 'M'">Mensual</option>
+                <option value="A" ng-if="chPagaTiempo.frequencyReceipt == 'A'">Anual</option>
+            </select>
+        </div>
+
+        <label class="col-md-2 padding-label">
+            Ubic. Ref Fija
+        </label>
+        <div class="col-md-2">
+            <select class="form-control" ng-model="chPagaTiempo.posFixedReference">
+                <option value="PRI" ng-if="chPagaTiempo.posFixedReference == 'PRI'">Primaria</option>
+                <option value="SEC" ng-if="chPagaTiempo.posFixedReference == 'SEC'">Secundaria</option>
+            </select>
+        </div>
+
+        <label class="col-md-2 padding-label" >
+            Validaci&oacute;n BD
+        </label>
+        <div class="col-md-2">
+            <label class="radio-inline">
+                <input type="radio" ng-model="specialparam.hasValidationDB" ng-value=true disabled>
+                Si
+            </label>
+            <label class="radio-inline">
+                <input type="radio" ng-model="specialparam.hasValidationDB" ng-value=false disabled>
+                No
+            </label>
+        </div>
+    </div>
+
+
+    <div class="form-group row">
+        <label class="col-md-2 padding-label" >
+            No. D&iacute;as Factura BD
+        </label>
+        <div class="col-md-2">
+            <input type='text' class="form-control" maxlength="3" readonly ng-model="chPagaTiempo.numDaysBillDB"/>
+        </div>
+
+        <label class="col-md-2 padding-label" >
+            Ind. Tipo Reintento
+        </label>
+        <div class="col-md-2">
+            <label class="radio-inline">
+                <input type="radio" ng-model="specialparam.indRetryType" ng-value="'D'" disabled>
+                Diaria
+            </label>
+            <label class="radio-inline">
+                <input type="radio" ng-model="specialparam.indRetryType" ng-value="'N'" disabled>
+                No tiene
+            </label>
+        </div>
+
+        <label class="col-md-2 padding-label">
+            Max Reintentos
+        </label>
+        <div class="col-md-2">
+            <select class="form-control" ng-model="chPagaTiempo.maxRetries">
+                <option value="5" ng-if="chPagaTiempo.maxRetries == '5'">5</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-md-3 padding-label" >
+            Nombre de Referencia Pago
+        </label>
+        <div class="col-md-3">
+            <input type='text' class="form-control" maxlength="30" readonly ng-model="chPagaTiempo.namePaymentReference"/>
+        </div>
+
+        <div  class="col-md-6">
+            <div ng-repeat="data in chPagaTiempo.validateDates">
+                <div class="row">
+                    <label class="col-md-4 padding-label">Valida Fecha {{$index+1}}</label>
+                    <div class="col-md-3" style="padding-top: 5px; margin-bottom: 1%;">
+                        <label class="radio-inline">
+                            <input type="radio" ng-model="data.valdate" ng-value=true disabled>
+                            Si
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" ng-model="data.valdate" ng-value=false disabled>
+                            No
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-md-3 padding-label" >
+            Ind. Cobro Vencido
+        </label>
+        <div class="col-md-3" style="padding-top: 5px; margin-bottom: 1%;">
+            <label class="radio-inline">
+                <input type="radio" ng-model="chPagaTiempo.indRetryType" ng-value=true disabled>
+                Si
+            </label>
+            <label class="radio-inline">
+                <input type="radio" ng-model="chPagaTiempo.indRetryType" ng-value=false disabled>
+                No
+            </label>
+        </div>
+
+        <div  class="col-md-6">
+            <div ng-repeat="data in chPagaTiempo.validateAmounts">
+                <div class="row">
+                    <label class="col-md-4 padding-label">Valida Importe {{$index+1}}</label>
+                    <div class="col-md-3" style="padding-top: 5px; margin-bottom: 1%;">
+                        <label class="radio-inline">
+                            <input type="radio" ng-model="data.valamount" ng-value=true disabled>
+                            Si
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" ng-model="data.valamount" ng-value=false disabled>
+                            No
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-md-2 padding-label" >
+            Indicador Cobro Parcial
+        </label>
+        <div class="col-md-2">
+            <label class="radio-inline">
+                <input type="radio" ng-model="chPagaTiempo.indPartialPayment" ng-value=true disabled>
+                Si
+            </label>
+            <label class="radio-inline">
+                <input type="radio" ng-model="chPagaTiempo.indPartialPayment" ng-value=false disabled>
+                No
+            </label>
+        </div>
+
+        <label class="col-md-2 padding-label">
+            No. Max Asuntos Cargo
+        </label>
+        <div class="col-md-2">
+            <select class="form-control" ng-model="chPagaTiempo.maxChargeProducts">
+                <option value="1" ng-if="chPagaTiempo.maxChargeProducts == '1'">1</option>
+                <option value="2" ng-if="chPagaTiempo.maxChargeProducts == '2'">2</option>
+                <option value="3" ng-if="chPagaTiempo.maxChargeProducts == '3'">3</option>
+            </select>
+        </div>
+
+        <label class="col-md-2 padding-label" >
+            Ind. Cargo Cuentas
+        </label>
+        <div class="col-md-2">
+            <label class="radio-inline">
+                <input type="radio" ng-model="chPagaTiempo.hasChargeAccount" ng-value=true disabled>
+                Si
+            </label>
+            <label class="radio-inline">
+                <input type="radio" ng-model="chPagaTiempo.hasChargeAccount" ng-value=false disabled>
+                No
+            </label>
+        </div>
+    </div>
+
+
+    <div class="form-group row">
+        <label class="col-md-2 padding-label" >
+            Indicador Cargo T Cr&eacute;dito
+        </label>
+        <div class="col-md-2">
+            <label class="radio-inline">
+                <input type="radio" ng-model="chPagaTiempo.indUseCreditCard" ng-value=true disabled>
+                Si
+            </label>
+            <label class="radio-inline">
+                <input type="radio" ng-model="chPagaTiempo.indUseCreditCard" ng-value=false disabled>
+                No
+            </label>
+        </div>
+
+        <label class="col-md-2 padding-label">
+            No. Cuotas Max Difer.
+        </label>
+        <div class="col-md-2">
+            <select class="form-control" ng-model="chPagaTiempo.maxChargeProducts">
+                <option value="{{chPagaTiempo.maxChargeProducts}}" >{{chPagaTiempo.maxChargeProducts}}</option>
+            </select>
+        </div>
+    </div>
+
+</form>

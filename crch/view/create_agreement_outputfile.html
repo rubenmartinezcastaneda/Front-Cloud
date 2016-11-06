@@ -1,0 +1,159 @@
+<form ng-submit="saveOutputFile(oFile)" ng-controller="RequestAgreementCtrl">
+    <div class="form-group row">
+        <label class="col-md-2 padding-label" >Generaci&oacute;n de Archivo</label>
+        <div class="col-md-3" style="padding-top: 5px;" >
+            <label class="radio-inline">
+                <input type="radio" ng-model="oFile.fileGeneration" ng-value=true>
+                Si
+            </label>
+            <label class="radio-inline">
+                <input type="radio" ng-model="oFile.fileGeneration" ng-value=false>
+                No
+            </label>
+        </div>
+
+        <label class="col-md-3 col-md-offset-1 padding-label">
+            Tipo Archivo Salida
+        </label>
+        <div class="col-md-3">
+            <select class="form-control" ng-model="oFile.outputFileType" required>
+                <option value=""></option>
+                <option value="01">ESTANDAR BBVA</option>
+                <option value="02">ASOBANCARIA 1998</option>
+                <option value="03">ASOBANCARIA 2000</option>
+                <option value="04">ASOBANCARIA 2001</option>
+                <option value="09">ASOBANCARIA 2011</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-md-2 padding-label" >Tipo de Formato</label>
+        <div class="col-md-3">
+            <select class="form-control" ng-model="oFile.formatType" required>
+                <option value=""></option>
+                <option value="01">ERNAL</option>
+                <option value="02">ERECA</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-md-2 padding-label" >Periodicidad Informe</label>
+        <div class="col-md-3">
+            <select class="form-control" ng-model="oFile.reportingRate" required>
+                <option value=""></option>
+                <option value="Diario">Diario</option>
+                <option value="Mensual">Mensual</option>
+                <option value="Ambos">Ambos</option>
+                <option value="Ninguno">Ninguno</option>
+            </select>
+        </div>
+
+        <label class="col-md-3 col-md-offset-1 padding-label">
+            Periodicidad Archivo
+        </label>
+        <div class="col-md-3">
+            <select class="form-control" ng-model="oFile.periodicityFile" required>
+                <option value=""></option>
+                <option value="I">Incremental (Cada Hora)</option>
+                <option value="A">Acumulado (Cada Hora)</option>
+                <option value="D">Diario (Automatico)</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-md-2 padding-label" >Destino</label>
+        <div class="col-md-3">
+            <select class="form-control" ng-model="oFile.destination" required>
+                <option value=""></option>
+                <option value="FTP">FTP</option>
+                <option value="CASH">CASH</option>
+            </select>
+        </div>
+
+        <label class="col-md-3 col-md-offset-1 padding-label" ng-if="type == 'R'">
+            Transferencia Parcial
+        </label>
+        <div class="col-md-3" ng-if="type == 'R'">
+            <select class="form-control" ng-model="oFile.periodicityFile" required >
+                <option value=""></option>
+                <option value="A">Acumulado</option>
+                <option value="I">Incremental</option>
+                <option value="P">Parcial</option>
+                <option value="T">Total</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-md-2 padding-label">Convenio Especial</label>
+        <div class="col-md-2" style="padding-top: 5px;">
+            <label class="radio-inline">
+                <input type="radio" ng-model="oFile.specialAgreement" ng-value=true>
+                Si
+            </label>
+            <label class="radio-inline">
+                <input type="radio" ng-model="oFile.specialAgreement" ng-value=false>
+                No
+            </label>
+        </div>
+
+        <label class="col-md-2 padding-label">Informe por Canal</label>
+        <div class="col-md-2" style="padding-top: 5px;">
+            <input type='text' class="form-control" required ng-model="oFile.channelReport"/>
+        </div>
+
+        <label class="col-md-2 padding-label">Periodicidad M&iacute;n</label>
+        <div class="col-md-2" style="padding-top: 5px;">
+            <input type='text' class="form-control" required ng-model="oFile.minPeriodicity"/>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-md-2 padding-label">Env&iacute;o archivo autom&aacute;tico</label>
+        <div class="col-md-2" style="padding-top: 5px;">
+            <label class="radio-inline">
+                <input type="radio" ng-model="oFile.autoSendFile" ng-value=true>
+                Si
+            </label>
+            <label class="radio-inline">
+                <input type="radio" ng-model="oFile.autoSendFile" ng-value=false>
+                No
+            </label>
+        </div>
+
+        <label class="col-md-2 padding-label">Posici&oacute;n Entrada BD</label>
+        <div class="col-md-2" style="padding-top: 5px;">
+            <label class="radio-inline">
+                <input type="radio" ng-model="oFile.hasDBEntryPosition" ng-value=true>
+                Si
+            </label>
+            <label class="radio-inline">
+                <input type="radio" ng-model="oFile.hasDBEntryPosition" ng-value=false>
+                No
+            </label>
+        </div>
+
+        <label class="col-md-2 padding-label">Longitud</label>
+        <div class="col-md-2" style="padding-top: 5px;">
+            <div class="col-xs-5">
+                <input type='text' class="form-control" required ng-model="oFile.longitudeInit"/>
+            </div>
+            <div class="col-xs-1" style="margin: 0px; padding: 0px;">
+                <p style="font-size: 25px; text-align: center;">
+                    /
+                </p>
+            </div>
+            <div class="col-xs-5">
+                <input type='text' class="form-control" required ng-model="oFile.longitudeEnd"/>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="center-block row" style="width: 20%" >
+        <button class="btn btn-primary col-xs-12" type="submit">Guardar</button>
+    </div>
+</form>

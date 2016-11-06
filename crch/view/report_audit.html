@@ -1,0 +1,148 @@
+<div class="form-group row">
+   <span class="label label-primary center-block" style="margin: 1%;font-size: 100%;">
+       Informe de Auditor&iacute;a
+   </span>
+</div>
+
+<div class="form-group row">
+    <label class="col-md-2 padding-label" >
+        N&uacute;mero de Convenio
+    </label>
+    <div class="col-md-2">
+        <input type='text' class="form-control" maxlength="20" required ng-model="auxData.filter.agreementNumber"/>
+    </div>
+
+    <label class="col-md-2 padding-label">
+        N&uacute;mero de Solicitud
+    </label>
+    <div class="col-md-2">
+        <input type='text' class="form-control" maxlength="20" required ng-model="auxData.filter.requestNumber"/>
+    </div>
+
+    <label class="col-md-2 padding-label" >
+        N&uacute;mero de Identificaci&oacute;n
+    </label>
+    <div class="col-md-2">
+        <input type='text' class="form-control" maxlength="20" required ng-model="auxData.filter.idNumber"/>
+    </div>
+</div>
+
+<div class="form-group row">
+    <label class="col-md-2 padding-label">Fecha Inicio</label>
+    <div class="col-md-4 ">
+        <div class='input-group date'>
+            <input type='text' class="form-control" ng-model="auxData.filter.startDate" required datetime-picker date-format="dd/MM/yyyy" date-only />
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+        </div>
+    </div>
+
+    <label class="col-md-2 padding-label">Fecha Fin</label>
+    <div class="col-md-4 ">
+        <div class='input-group date'>
+            <input type='text' class="form-control" ng-model="auxData.filter.endDate" required datetime-picker date-format="dd/MM/yyyy" date-only />
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+        </div>
+    </div>
+</div>
+
+<div class="form-group row center-block" style="width: 40%; margin-left: 60%">
+    <button class="btn btn-primary col-md-5 col-xs-12 " type="button" style="margin-bottom: 5px;" ng-click="genReport(5)">Generar Archivo</button>
+    <button class="btn btn-primary col-md-offset-2 col-md-5 col-xs-12 " type="button" style="margin-bottom: 5px;" ng-click="cleanAux()">Limpiar</button>
+</div>
+
+<div ng-if="auxData.result.length > 0"  class="form-group row center-block table-responsive">
+    <table class="table table-bordered">
+        <tr class="active">
+            <th colspan="13">
+                INFORME DE AUDITOR&Iacute;A
+            </th>
+        </tr>
+
+        <tr class="active">
+            <th>
+                No. Solicitud
+            </th>
+            <th>
+                ID Convenio
+            </th>
+            <th>
+                Nombre Convenio
+            </th>
+            <th>
+                N&uacute;mero de Identificaci&oacute;n
+            </th>
+            <th>
+                Transacci&oacute;n
+            </th>
+            <th>
+                Campo
+            </th>
+            <th>
+                Tipo
+            </th>
+            <th>
+                M&oacute;dulo
+            </th>
+            <th>
+                Parametro Anterior
+            </th>
+            <th>
+                Parametro Nuevo
+            </th>
+            <th>
+                Fecha
+            </th>
+            <th>
+                Hora
+            </th>
+            <th>
+                Usuario
+            </th>
+        </tr>
+        <tr ng-repeat="data in auxData.result">
+           <td>
+               {{data.requestNum}}
+           </td>
+            <td>
+                {{data.agreementNum}}
+            </td>
+            <td>
+                {{data.agreementName}}
+            </td>
+            <td>
+                {{data.idNumber}}
+            </td>
+            <td>
+                {{data.transaction}}
+            </td>
+            <td>
+                {{data.field}}
+            </td>
+            <td>
+                {{data.fieldType}}
+            </td>
+            <td>
+                {{data.moduleName}}
+            </td>
+            <td>
+                {{data.beforeParam}}
+            </td>
+            <td>
+                {{data.newParam}}
+            </td>
+            <td>
+                {{data.operationDate}}
+            </td>
+            <td>
+                {{data.operationHour}}
+            </td>
+            <td>
+                {{data.userCode}}
+            </td>
+        </tr>
+    </table>
+</div>

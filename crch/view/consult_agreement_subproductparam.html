@@ -1,0 +1,80 @@
+<form>
+    <div class="form-group row">
+        <label class="col-md-2 padding-label">
+            Tipo de Recaudo
+        </label>
+        <div class="col-md-2">
+            <input type='text' class="form-control" readonly ng-model="subproductparam.collectType"/>
+        </div>
+
+        <label class="col-md-2 padding-label">
+            Clase
+        </label>
+        <div class="col-md-2">
+            <select class="form-control" ng-model="subproductparam.class" >
+                <option value="002" ng-if="subproductparam.class == '002'">Departamentales</option>
+                <option value="003" ng-if="subproductparam.class == '003'">Municipales</option>
+            </select>
+        </div>
+
+        <label class="col-md-2 padding-label">
+            Producto
+        </label>
+        <div class="col-md-2">
+            <select class="form-control" ng-model="subproductparam.product">
+                <option value="01" ng-if="subproductparam.product == '01'">Cuenta Corriente</option>
+                <option value="02" ng-if="subproductparam.product == '02'">Cuenta de Ahorros</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-md-2 padding-label">
+            <span ng-if="subproductparam.product == '01'">Subproducto CTA CTE</span>
+            <span ng-if="subproductparam.product == '02'">Subproducto CTA Ahorros</span>
+        </label>
+        <div class="col-md-5">
+            <select class="form-control" ng-model="subproductparam.subproduct" ng-if="subproductparam.product == '01'">
+                <option value="0001" ng-if="subproductparam.subproduct == '0001'">Cta Cte</option>
+                <option value="0002" ng-if="subproductparam.subproduct == '0002'">Cta Cte Remunerada</option>
+                <option value="0003" ng-if="subproductparam.subproduct == '0003'">Cta Cr&eacute;dito</option>
+                <option value="0004" ng-if="subproductparam.subproduct == '0004'">Cta Cte Especial</option>
+                <option value="0005" ng-if="subproductparam.subproduct == '0005'">Cta Cte Prepactada</option>
+                <option value="0006" ng-if="subproductparam.subproduct == '0006'">Cta Comercio</option>
+                <option value="0007" ng-if="subproductparam.subproduct == '0007'">Cta Cr&eacute;dito Comercio</option>
+                <option value="008" ng-if="subproductparam.subproduct == '008'">Cta Cte Rentable Plus</option>
+                <option value="010" ng-if="subproductparam.subproduct == '010'">Agrocuenta</option>
+                <option value="011" ng-if="subproductparam.subproduct == '011'">Cta Ecopetrol</option>
+                <option value="012" ng-if="subproductparam.subproduct == '012'">Cta Cte C.N.B</option>
+                <option value="013" ng-if="subproductparam.subproduct == '013'">Cta Cte Remunerada Persona Natura</option>
+            </select>
+
+            <select class="form-control" ng-model="subproductparam.subproduct" required  ng-if="subproductparam.product == '02'">
+                <option value="0001" ng-if="subproductparam.subproduct == '0001'">Cuenta Ahorro Diario</option>
+                <option value="0002" ng-if="subproductparam.subproduct == '0002'">Ahorros Tradicional</option>
+                <option value="0003" ng-if="subproductparam.subproduct == '0003'">El Libreton BBVA</option>
+                <option value="0004" ng-if="subproductparam.subproduct == '0004'">Programado para Vivienda</option>
+                <option value="0005" ng-if="subproductparam.subproduct == '0005'">Ahorros Especial</option>
+                <option value="0006" ng-if="subproductparam.subproduct == '0006'">Cuenta Ahorros Prepactada</option>
+                <option value="0007" ng-if="subproductparam.subproduct == '0007'">Cuenta de Ahorros AFC</option>
+                <option value="008" ng-if="subproductparam.subproduct == '008'">Ahorros Empresas T.V</option>
+                <option value="009" ng-if="subproductparam.subproduct == '009'">Ahorros PREF  T.V.BCA EMP INST</option>
+                <option value="010" ng-if="subproductparam.subproduct == '010'">Ahorros Emp</option>
+                <option value="011" ng-if="subproductparam.subproduct == '011'">Cta de Ahorros Empresarial</option>
+                <option value="012" ng-if="subproductparam.subproduct == '012'">Cta AHS Pensional Colpensiones</option>
+                <option value="013" ng-if="subproductparam.subproduct == '013'">Blue BBVA</option>
+                <option value="014" ng-if="subproductparam.subproduct == '014'">Cta Ahorros Pensional BBVA</option>
+                <option value="016" ng-if="subproductparam.subproduct == '016'">Cta Mi Proyecto</option>
+                <option value="017" ng-if="subproductparam.subproduct == '017'">Cta Ahorro Fijo</option>
+                <option value="018" ng-if="subproductparam.subproduct == '018'">Cta Ahorros Blue Kids Ni&ntilde;os</option>
+                <option value="019" ng-if="subproductparam.subproduct == '019'">Cta Ahorros Blue Kids Ni&ntilde;as</option>
+                <option value="020" ng-if="subproductparam.subproduct == '020'">Ahorro Diario Empleados</option>
+                <option value="021" ng-if="subproductparam.subproduct == '021'">Electr&oacute;nica</option>
+                <option value="022" ng-if="subproductparam.subproduct == '022'">CDAT</option>
+                <option value="024" ng-if="subproductparam.subproduct == '024'">Ahorros EV Colombia</option>
+                <option value="025" ng-if="subproductparam.subproduct == '025'">Cta FAC Colombia</option>
+            </select>
+
+        </div>
+    </div>
+</form>

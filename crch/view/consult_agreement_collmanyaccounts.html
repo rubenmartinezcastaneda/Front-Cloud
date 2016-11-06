@@ -1,0 +1,62 @@
+<form >
+    <div class="form-group row" >
+        <div class="panel panel-default col-xs-offset-1 col-xs-10" style="padding: 0px;" ng-repeat="data in colManyAccounts.collectAccounts">
+            <div class="panel-heading">Cuenta de Recaudo {{$index + 1}}</div>
+            <div class="panel-body">
+                <div class="form-group row">
+                    <label class="col-md-2 padding-label">Tipo de Cuenta</label>
+                    <div class="col-md-3">
+                        <select class="form-control" ng-model="data.type" required >
+                            <option value="CC" ng-if="data.type == 'CC'">Cuenta Corriente</option>
+                            <option value="AH" ng-if="data.type == 'AH'">Cuenta de Ahorros</option>
+                            <option value="CL" ng-if="data.type == 'CL'">Cr&eacute;dito L&iacute;quido</option>
+                        </select>
+                    </div>
+                    <label class="col-md-offset-1 col-md-2 padding-label">N&uacute;mero de Cuenta (20 D&iacute;gitos) </label>
+                    <div class="col-md-4">
+                        <input type="text" class="form-control" maxlength="20" readonly ng-model="data.numAccount">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="typeId" class="col-md-2 padding-label">Tipo de Identificaci&oacute;n</label>
+                    <div class="col-md-3">
+                        <select class="form-control" id="typeId" ng-model="data.typeId">
+                            <option value="3" ng-if="data.typeId == '3'">NIT</option>
+                            <option value="1" ng-if="data.typeId == '1'">C&eacute;dula</option>
+                        </select>
+                    </div>
+
+                    <label class="col-md-3 col-md-offset-1 padding-label">N&uacute;mero de Identificaci&oacute;n</label>
+                    <div class="col-md-2 col-xs-10">
+                        <input type="text" class="form-control" maxlength="15" readonly ng-model="data.numId">
+                    </div>
+                    <div class="col-md-1 col-xs-2">
+                        <input type="text" class="form-control" maxlength="1" readonly ng-model="data.verDigId">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-md-3 col-md-offset-6 padding-label">Porcentaje de Recaudo</label>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control" readonly ng-model="data.collectPercent">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-md-9 padding-label">
+            <p style="text-align: center;">
+                Porcentaje % Total del Conv. De Recaudo. La suma del porcentaje
+                dirigido a las cuentas debe ser igual a 100% incluyendo la cuenta
+                principal.
+            </p>
+        </label>
+        <div class="col-md-3">
+            <input type="text" class="form-control" readonly ng-model="colManyAccounts.percentSum">
+        </div>
+    </div>
+
+</form>

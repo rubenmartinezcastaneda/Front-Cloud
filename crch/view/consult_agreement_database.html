@@ -1,0 +1,152 @@
+<form>
+    <div class="form-group row">
+        <label class="col-md-2 padding-label">Tipo Base de Datos</label>
+        <div class="col-md-3">
+            <select class="form-control" ng-model="db.type" >
+                <option value="WBS" ng-if="db.type == 'WBS'">WebService</option>
+                <option value="DBP" ng-if="db.type == 'DBP'">Bases de Datos Propias</option>
+                <option value="RED" ng-if="db.type == 'RED'">Redeban</option>
+                <option value="DRB" ng-if="db.type == 'DRB'">Double Ref. en Base de Datos</option>
+                <option value="MWS" ng-if="db.type == 'MWS'">Multifactura Webservice</option>
+                <option value="HIB" ng-if="db.type == 'HIB'">H&iacute;brido</option>
+                <option value="NVA" ng-if="db.type == 'NVA'">No V&aacute;lida</option>
+            </select>
+        </div>
+
+        <label class="col-md-3 col-md-offset-1 padding-label">Estructura</label>
+        <div class="col-md-3">
+            <select class="form-control" ng-model="db.structure" >
+                <option value="ASO98" ng-if="db.structure == 'ASO98'">Asobancaria 1998</option>
+                <option value="ASO00" ng-if="db.structure == 'ASO00'">Asobancaria 2000</option>
+                <option value="ASO01" ng-if="db.structure == 'ASO01'">Asobancaria 2001</option>
+                <option value="ASO11" ng-if="db.structure == 'ASO11'">Asobancaria 2011</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-md-2 padding-label">Posici&oacute;n de Referencia</label>
+        <div class="col-md-3">
+            <input type="text" class="form-control" ng-model="db.referencePosition" readonly>
+        </div>
+
+        <div  class="col-md-offset-1 col-md-6">
+            <div ng-repeat="data in db.dbvalidatevalues">
+                <div class="row">
+                    <label class="col-md-4 padding-label">Valida Valor  {{$index+1}}</label>
+                    <div class="col-md-3" style="padding-top: 5px; margin-bottom: 1%;">
+                        <label class="radio-inline">
+                            <input type="radio" ng-model="data.valvalue" ng-value=true disabled>
+                            Si
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" ng-model="data.valvalue" ng-value=false disabled>
+                            No
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-md-2 padding-label">Periodo de Entrega</label>
+        <div class="col-md-3">
+            <select class="form-control" ng-model="db.deliveryPeriod" >
+                <option value="Diaria" ng-if="db.deliveryPeriod == 'Diaria'">Diaria</option>
+                <option value="Mensual" ng-if="db.deliveryPeriod == 'Mensual'">Mensual</option>
+                <option value="Semanal" ng-if="db.deliveryPeriod == 'Semanal'">Semanal</option>
+            </select>
+        </div>
+
+        <label class="col-md-3 col-md-offset-1 padding-label">Ciclos de Actualizaci&oacute;n</label>
+        <div class="col-md-3">
+            <select class="form-control" ng-model="db.updateCycles" >
+                <option value="Total" ng-if="db.updateCycles == 'Total'">Total</option>
+                <option value="Parcial" ng-if="db.updateCycles == 'Parcial'">Parcial</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-md-2 padding-label">No de Ciclos</label>
+        <div class="col-md-1">
+            <input type="text" class="form-control" ng-model="db.numberCycles" readonly>
+        </div>
+
+        <label class="col-md-2 padding-label" ng-if="type == 'R'">Tipo de Transmisi&oacute;n</label>
+        <div class="col-md-1" ng-if="type == 'R'">
+            <select class="form-control" ng-model="db.transmisionType" >
+                <option value="0" ng-if="db.transmisionType == '0'">0</option>
+                <option value="1" ng-if="db.transmisionType == '1'">1</option>
+                <option value="2" ng-if="db.transmisionType == '2'">2</option>
+                <option value="3" ng-if="db.transmisionType == '3'">3</option>
+            </select>
+        </div>
+        <label class="col-md-3 padding-label">D&iacute;as de Borrado Fecha de Vencimiento</label>
+        <div class="col-md-1">
+            <input type="text" class="form-control" readonly ng-model="db.numberCycles">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-md-2 padding-label">Llave de Carga</label>
+        <div class="col-md-1">
+            <select class="form-control" ng-model="db.loadKey" >
+                <option value="1" ng-if="db.loadKey == '1'">EAN</option>
+                <option value="2" ng-if="db.loadKey == '1'">NIT</option>
+            </select>
+        </div>
+
+        <label class="col-md-2 padding-label" ng-if="type == 'R' && db.type == 'RED'">C&oacute;digo de Red</label>
+        <div class="col-md-2" ng-if="type == 'R' && db.type == 'RED'">
+            <input type="text" class="form-control" readonly ng-model="db.networkCode">
+        </div>
+
+        <label class="col-md-3 padding-label" ng-if="type == 'R'">Parametria para Realizar la Carga de Base de Datos</label>
+        <div class="col-md-1" ng-if="type == 'R'">
+            <select class="form-control" ng-model="db.paramDoLoad" >
+                <option value="PNET" ng-if="db.paramDoLoad == 'PNET'">PNET</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div  class="col-md-6">
+            <div ng-repeat="data in db.dbvalidatedatesHeader">
+                <div class="row">
+                    <label class="col-md-4 padding-label">Valida Fecha Encab  {{$index+1}}</label>
+                    <div class="col-md-3" style="padding-top: 5px; margin-bottom: 1%;">
+                        <label class="radio-inline">
+                            <input type="radio" ng-model="data.valvalue" ng-value=true disabled>
+                            Si
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" ng-model="data.valvalue" ng-value=false disabled>
+                            No
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div  class="col-md-6">
+            <div ng-repeat="data in db.dbvalidatedatesDetail">
+                <div class="row">
+                    <label class="col-md-4 padding-label">Valida Fecha Det  {{$index+1}}</label>
+                    <div class="col-md-3" style="padding-top: 5px; margin-bottom: 1%;">
+                        <label class="radio-inline">
+                            <input type="radio" ng-model="data.valvalue" ng-value=true disabled>
+                            Si
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" ng-model="data.valvalue" ng-value=false disabled>
+                            No
+                        </label>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>
